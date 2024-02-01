@@ -13,12 +13,11 @@ Burada iki fonksiyonun kodu paralel olarak çalıştırılmamaktadır. Kontrol a
 - Bir fonksiyon, bir _coroutine_'in mevcut kontrol akışını başlatmaya ya da devam ettirmeye _coroutine_'in deyimlerini başlatarak ya da devam ettirerek karar verebilir.
 - Daha sonra bir _coroutine_ çalıştığında, _coroutine_ yürütmesini duraklatmaya veya sonlandırmaya kendisi karar verebilir. Bu da _coroutine_'i başlatan veya devam ettiren fonksiyonun kontrol akışına devam ettiği anlamına gelir.
 
-Bir coroutine'in en basit şeklinde, hem ana kontrol akışı hem de coroutine'in kontrol akışı aynı iş parçacığında çalışır. 
-Çoklu iş parçacığı kullanmak zorunda değiliz ve eşzamanlı erişimle uğraşmak zorunda değiliz. 
-Ancak, korutinleri farklı iş parçacıklarında çalıştırmak mümkündür. 
-Hatta bir coroutine'i daha önce askıya alındığı yerden farklı bir iş parçacığında devam ettirebilirsiniz. 
+- Bir _coroutine_'in en basit şeklinde, hem ana kontrol akışı hem de _coroutine_'in kontrol akışı aynı _thread_'de çalışır. 
+- Birden fazla _thread_ kullanmak zorunda değiliz ve eşzamanlı erişimle _(synchronosied access)_ uğraşmak zorunda değiliz. Ancak, _coroutine_'leri farklı _thread_lerde çalıştırmak mümkündür. 
+- Hatta bir _coroutine_'i daha önce askıya alındığı yerden farklı bir _thread_de devam ettirebiliriz.. 
 Korutinler ortogonal bir özelliktir, ancak birden fazla iş parçacığı ile birlikte kullanılabilir.
-Etkili bir şekilde, bir coroutine kullanmak, arka planda zaman zaman başlattığınız ve devam ettirdiğiniz bir fonksiyona sahip olmak gibidir. 
+-bir _coroutine_ kullanmak, arka planda zaman zaman başlattığınız ve devam ettirdiğimiz bir fonksiyona sahip olmak gibidir. 
 Bununla birlikte, bir coroutine'in ömrü iç içe geçmiş kapsamların ötesine geçtiğinden, bir coroutine aynı zamanda durumunu bir bellekte saklayan ve bununla başa çıkmak için bir API sağlayan bir nesnedir.
 
 - Bir fonksiyonun _coroutine_ olarak ele alınabilmesi için tanımmında aşağıdaki anahtar sözcüklerden en az birine sahip olması gerekir.
