@@ -33,23 +33,8 @@ co_return;
 deyimi yazmamız gerekir.
 
 - Bir _coroutine_ genellikle çağıran için _coroutine_ arayüzü _(coroutine interface)_ olarak hizmet veren bir nesne döndürür. 
-Coroutine'in amacına ve kullanımına bağlı olarak, bu nesne zaman zaman bağlamı askıya alan veya değiştiren çalışan bir görevi, 
-zaman zaman değer üreten bir üreteci veya tembel olarak ve talep üzerine bir veya daha fazla değer döndüren bir fabrikayı temsil edebilir.
+_coroutine_'in amacına ve kullanımına bağlı olarak, bu nesne zaman zaman bağlamı askıya alan veya değiştiren çalışan bir görevi, zaman zaman değer üreten bir üreteci veya tembel olarak _(lazily)_ ve talep üzerine bir veya daha fazla değer döndüren bir fabrikayı temsil edebilir.
 
-Hala max parametresine kadar olan değerler üzerinde döngü yapan bir tür fonksiyonumuz var. 
-Ancak, iki şey sıradan fonksiyonlardan farklıdır:
-- Döngünün içinde print ifadesinden sonra, coroutine'i askıya alan ve devam ettirilene kadar bloke eden bir co_await ifadesi vardır. 
-Buna askıya alma noktası denir.
-Askıya alma çağrısının tam davranışı co_await'ten hemen sonraki ifade tarafından tanımlanır. 
-Bu, programcıların askıya alma işleminin tam davranışını kontrol etmesini sağlar.
-Şimdilik, askıya almayı kabul eden ve kontrolü çağırana geri veren std::suspend_always türünde varsayılan olarak oluşturulmuş bir nesne kullanacağız. 
-Ancak, co_await'e özel operandlar ileterek askıya almayı reddedebilir veya bunun yerine başka bir coroutine'i devam ettirebilirsiniz.
 
-- Coroutine'in geri dönüş ifadesi olmamasına rağmen, CoroTask adında bir geri dönüş tipi vardır. 
-Bu tür, coroutine'i çağıran için coroutine arayüzü olarak hizmet eder. 
-Dönüş türünü auto olarak bildiremeyeceğimize dikkat edin.
-Geri dönüş türü gereklidir, çünkü çağıranın coroutine ile başa çıkabilmesi için bir arayüze ihtiyacı vardır
-(devam ettirmek gibi). C++20'de, coroutine arayüz tipleri programcı tarafından sağlanmalıdır (veya bir
-üçüncü taraf kütüphanesi). Bunun nasıl uygulandığını daha sonra göreceğiz. Plan, yaklaşan C++ standartlarının kütüphanelerinde bazı standart coroutine arayüz türleri sağlayacaktır.
 
 
