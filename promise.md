@@ -8,9 +8,7 @@
 
 - Derleme zamanında bir hata olmaması için _promise_type_'ın aşağıdaki fonksiyonarı tanımlaması gerekmektedir. (çağrıldıkları  sıra ile)  
 
-- _get_return_object()_ fonksiyonu _coroutine_ arayüzünü oluşturması için çağrılır.Bu fonksiyon _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda coroutine geri dönüş değeri ile iletilir. 
-- _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur. <br>
-
+_get_return_object()_ fonksiyonu _coroutine_ arayüzünü oluşturması için çağrılır. Bu fonksiyon _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda coroutine geri dönüş değeri ile iletilir. _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
 
 - initial_suspend()<br>
 fonksiyon, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını veriyor. <br> 
@@ -19,9 +17,10 @@ Bu fonksiyon derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrıl
 ```cpp
 co_await prm.initial_suspend();
 ```
-- bu yüzden fonksiyonun geri dönüş türü bir _"awaitable"_ tür olmalı.
-- eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_always_ olmalı.
-- eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istemiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_never_ olmalı.
+
+bu yüzden fonksiyonun geri dönüş türü bir _"awaitable"_ tür olmalı.<br>
+eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_always_ olmalı. <br>
+eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istemiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_never_ olmalı. <br>
 
 - final_suspend()
 
