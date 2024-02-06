@@ -13,6 +13,20 @@
 
 
 - initial_suspend()
+Fonksiyon şu kararın verilmesini sağlıyor:
+
+_coroutine_ başlatıldıktan sonra ilk olarak suspend edilsin mi? 
+Bu fonksiyon derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılıyor.
+
+```cpp
+co_await prm.initial_suspend();
+```
+- eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_always_ olmalı.
+- eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istemiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_never_ olmalı.
+
+
+
+bu fonksiyon true 
 
 - final_suspend()
 
