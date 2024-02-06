@@ -7,5 +7,6 @@
 - işlenmemiş hata nesneleriyle _(unhandled exception)_ ilgili yapılacakları belirler.
 
 - Derleme zamanında bir hata olmaması için promis_type'ın aşağıdaki fonksiyonarı tanımlaması gerekmektedir. (çağprıldıkları  sıra ile)  
-- _get_return_object()_ fonksiyonu _coroutine_ arayüzünü oluşturması için çağrılır.Bu fonksiyon _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda coroutine geri dönüş değeri ile iletilir.
+- _get_return_object()_ fonksiyonu _coroutine_ arayüzünü oluşturması için çağrılır.Bu fonksiyon _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda coroutine geri dönüş değeri ile iletilir. 
+- _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
 
