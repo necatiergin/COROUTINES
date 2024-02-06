@@ -43,6 +43,8 @@ struct promise_type {
 }
 ```
 
+Tabi bu fonksiyon, _coroutine_ başlatıldığında suspend edilip edilmeyeceği kararının çalışma zamanında değerlendirilen koşullara göre verilmesini de sağlayabilir. Yine bu fonksiyon içinde _promise_type_ nesnesinin veri elemanlarına atama yapabiliriz.
+
 - final_suspend()
 
 - unhandled_exception()
