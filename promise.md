@@ -8,7 +8,9 @@
 
 - Derleme zamanında bir hata olmaması için _promise_type_'ın aşağıdaki fonksiyonarı tanımlaması gerekmektedir. (çağrıldıkları  sıra ile)  
 
-_get_return_object()_ fonksiyonu _coroutine_ arayüzünü oluşturması için çağrılır. Bu fonksiyon _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda coroutine geri dönüş değeri ile iletilir. _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
+#### _get_return_object()_ 
+
+Bu fonksiyon _coroutine_ arayüzünü oluşturması için çağrılır. Bu fonksiyon _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda coroutine geri dönüş değeri ile iletilir. _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
 
 initial_suspend() fonksiyonu, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını veriyor. <br> 
 Bu fonksiyon derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılıyor:
@@ -44,7 +46,7 @@ struct promise_type {
 
 Tabi bu fonksiyon, _coroutine_ başlatıldığında suspend edilip edilmeyeceği kararının çalışma zamanında değerlendirilen koşullara göre verilmesini de sağlayabilir. Yine bu fonksiyon içinde _promise_type_ nesnesinin veri elemanlarına atama yapabiliriz.
 
-_final_suspend() noexcept;_ <br>
+#### _final_suspend() noexcept;_
 
 bu fonksiyon _coroutine_'in son kez _suspend_ edilebileceği noktayı belirler ve derleyicinin ürettiği kodda aşağıdaki gibi çağrılır:<br>
 _prm_ bir _promise_type_ nesnesi olmak üzere
@@ -55,10 +57,11 @@ co_await prm.final_suspend();
 Bu fonksiyon _coroutine frame_ tarafından _coroutine_ gövdesini içine alan _try_ bloğunun dışında ve _return_void()_, _return_value()_ ya da _unhandled_exception()_ fonksiyonları çağrıldıktan sonra çağrılır. Bu yüzden _noexcept_ olmalıdır.
 
 
-- unhandled_exception()
+#### _unhandled_exception()_
 
+#### return_void ()
 
-- return_void ya da return_value
+#### return_value()
 
 
 
