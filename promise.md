@@ -1,2 +1,2 @@
 - Bu tür, bir _coroutine_ ile işlem yapmak için belirli _"customization"_ noktalarını tanımlamak için kullanılır. 
-- Belirli üye fonksiyonları belirli durumlarda çağrılan call_back fonksiyonlar tanımlar.
+- Belirli üye fonksiyonları belirli durumlarda çağrılan _call_back_ fonksiyonlar tanımlar.
