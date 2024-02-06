@@ -19,8 +19,29 @@ co_await prm.initial_suspend();
 ```
 
 bu yüzden fonksiyonun geri dönüş türü bir _"awaitable"_ tür olmalı.<br>
-eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_always_ olmalı. <br>
-eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istemiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_never_ olmalı. <br>
+eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_always_ olmalı.
+```cpp
+struct promise_type {
+	//...
+	auto initial_suspend() 
+	{ 
+		return std::suspend_always{}; 
+	}
+	//...
+}
+```
+eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istemiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_never_ olmalı.
+
+```cpp
+struct promise_type {
+	//...
+	auto initial_suspend() 
+	{ 
+		return std::suspend_never{}; 
+	}
+	//...
+}
+```
 
 - final_suspend()
 
