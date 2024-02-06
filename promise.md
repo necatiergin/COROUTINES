@@ -19,12 +19,9 @@ Bu fonksiyon derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrıl
 ```cpp
 co_await prm.initial_suspend();
 ```
+- bu yüzden foınksiyonun geri dönüş türü bir "awaitable" tür olmalı.
 - eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_always_ olmalı.
 - eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istemiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_never_ olmalı.
-
-
-
-bu fonksiyon true 
 
 - final_suspend()
 
