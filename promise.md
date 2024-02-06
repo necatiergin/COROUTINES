@@ -46,12 +46,13 @@ Tabi bu fonksiyon, _coroutine_ başlatıldığında suspend edilip edilmeyeceği
 
 _final_suspend() noexcept;_ <br>
 
-bu fonksiyon _coroutine_'in son kez _suspend edilebileceği noktayı belirler ve derleyicinin ürettiği kodda aşağıdaki gibi çağrılır:<br>
+bu fonksiyon _coroutine_'in son kez _suspend_ edilebileceği noktayı belirler ve derleyicinin ürettiği kodda aşağıdaki gibi çağrılır:<br>
 _prm_ bir _promise_type_ nesnesi olmak üzere
 
 ```cpp
 co_await prm.final_suspend();
 ```
+Bu fonksiyon _coroutine frame_ tarafından _coroutine_ gövdesini içine alan _try_ bloğunun dışında ve _return_void()_, _return_value()_ ya da _unhandled_exception()_ fonksiyonları çağrıldıktan sonra çağrılır. Bu yüzden _noexcept_ olmalıdır.
 
 
 - unhandled_exception()
