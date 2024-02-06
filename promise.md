@@ -12,10 +12,8 @@
 - _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur. <br>
 
 
-- initial_suspend()
-Fonksiyon şu kararın verilmesini sağlıyor:
-
-_coroutine_ başlatıldıktan sonra ilk olarak suspend edilsin mi? 
+- initial_suspend()<br>
+fonksiyon şu kararın verilmesini sağlıyor: _coroutine_ başlatıldıktan sonra ilk olarak suspend edilsin mi? 
 Bu fonksiyon derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılıyor.
 
 ```cpp
