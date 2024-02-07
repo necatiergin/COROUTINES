@@ -10,10 +10,10 @@
 
 #### _get_return_object()_ 
 
-Bu fonksiyon _coroutine_ arayüzünü oluşturması için çağrılır. Bu fonksiyon _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda coroutine geri dönüş değeri ile iletilir. _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
+bu fonksiyon derleyicinin ürettiği kod tarafından _coroutine_ arayüzünü oluşturması için çağrılır. _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda _coroutine_'in geri dönüş değeri ile iletilir. _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
 
-initial_suspend() fonksiyonu, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını veriyor. <br> 
-Bu fonksiyon derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılıyor:
+#### initial_suspend();
+bu fonksiyon, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını veriyor. derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılıyor:
 
 ```cpp
 co_await prm.initial_suspend();
