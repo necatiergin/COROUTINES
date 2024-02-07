@@ -13,3 +13,9 @@ Bu kodun derlenebilmesi için _X_'in _awaitable_ bir tür olması gerekir. <br>
 Şimdiye kadar sadece basit _awaitable_ türleri kullandık:<br> 
 _std::suspend_always_ ve _std::suspend_never_. 
 Aşağıda listelenen üç üye işlevi doğrudan uygulayan veya alternatif olarak bu üye işlevlerle bir nesne üretmek için _co_await()_ operatör fonksiyonunu tanımlayan herhangi bir tür, _awaitable_ bir türdür:
+
+_await_ready()_, sonucun hazır olup olmadığını (true) veya geçerli coroutine'i askıya alıp sonucun hazır olmasını beklemek gerekip gerekmediğini ifade eden bool türden bir değer döndürür.<br>
+await_suspend (coroutine_handle) - await_ready() fonksiyonu false döndürürse, bu fonksiyon co_await'i çalıştıran coroutine'in handle'ı ile çağrılır. Bu fonksiyon bize asenkron çalışmayı başlatma ve görev bittiğinde tetiklenecek bir bildirim için abone olma ve ardından coroutine'i devam ettirme fırsatı verir.<br>
+await_resume(), sonucu (veya hatayı) coroutine'e geri paketlemekten sorumlu fonksiyondur. <br>
+await_suspend() tarafından başlatılan çalışma sırasında bir hata meydana gelmişse, bu işlev yakalanan hatayı yeniden atabilir veya bir hata kodu döndürebilir. Tüm co_await ifadesinin sonucu await_resume() fonksiyonunun döndürdüğü sonuçtur.
+
