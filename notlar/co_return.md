@@ -36,6 +36,8 @@ prom.return_void();
 prom.return_void();
 ```
 çağrısını ekler.<br>
+_co_return_ hakkında dikkat edilmesi gereken önemli bir nokta var: _co_return_ deyimi kullanılmadığı sürece `return_void()` fonksiyonunun tanımlanmamış olması bir sorun oluşturmaz. Ancak _co_return_ deyimi kullanılmışsa ve _promise_ sınıfının _return_void_ ya da _return_value_ fonksiyonları yok ise olmayan fonksiyon sentaks hatası oluşturur. 
+Eğer programın akışı bir _coroutine_ fonksiyonun sonuna kadar gelirse ve _promise_type_ sınıfının _return_void()_ fonksiyonu yok ise bu durum tanımsız davranıştır. 
 
 Bir _coroutine_'in tamamlanıp tamamlanmadığını öğrenmek için _coroutine_handle_ nesnesini kullanarak std::coroutine_handle sınıfının `done` isimli fonksiyonunu çağırabiliriz:
 
