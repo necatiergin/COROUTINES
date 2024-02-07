@@ -32,6 +32,15 @@ Bu fonksiyon içişnde askıya alınan _coroutine_ için _resume()_ veya _destro
 #### _await_suspend (coroutine_handle)_ 
 _await_ready()_ fonksiyonu _false_ döndürürse, bu fonksiyon _co_await_'i çalıştıran _coroutine_'in handle'ı ile çağrılır. <br>
 Bu fonksiyon bize asenkron çalışmayı başlatma ve görev bittiğinde tetiklenecek bir bildirim için abone olma ve ardından _coroutine_'i devam ettirme fırsatı verir.<br>
+ayrıntılı açıklama <br>
+Bu fonksiyon, _coroutine_ askıya alındıktan hemen sonra çağrılır. 
+Fonksiyon parametresi olan _awaitHdl_ askıya alma işleminin talep edildiği _coroutine_'e erişimi sağlayan _handle_'dır.<br>
+Bekleyen _coroutine_'in _handle_'ının türündendir: _std::coroutine_handle<PromiseType>_. <br>
+Burada, askıya alınan _coroutine_'i veya bekleyen _coroutine_'i hemen devam ettirmek ve diğerini daha sonra devam ettirmek için zamanlamak da dahil olmak üzere bir sonraki adımda ne yapılacağı belirlenebilir. 
+Bunu desteklemek için özel geri dönüş türleri kullanılabilir (bu durum aşağıda ele alınacaktır).<br>
+Hatta burada _coroutine_ _destroy_ edilebilir.  Ancak bu durumda _coroutine_'in başka bir yerde kullanılmadığından emin olmanız gerekir (örneğin bir _coroutine_ arayüzünde _done()_ çağrısı yapmak gibi). <br>
+
+
 
 
 #### _await_resume()_
