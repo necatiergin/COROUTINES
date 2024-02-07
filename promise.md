@@ -70,9 +70,7 @@ struct promise_type {
 		return std::suspend_always{};
 	}
 };
-``
-
-
+```
 #### _unhandled_exception()_
 
 #### _return_void();_
