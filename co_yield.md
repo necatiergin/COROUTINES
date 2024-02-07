@@ -1,6 +1,6 @@
 _co_yield_ operatörünü kullanarak bir _coroutine_'in kendisini çağıran koda değer ya da değerler döndürmesini sağlayabiliriz:
 
-co_yield C++20 ile eklenen bir anahtar sözcük.
+co_yield C++20 _standardı_ ile eklenen bir anahtar sözcük.
 
 ```cpp
 co_yield expr;
