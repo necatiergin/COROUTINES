@@ -1,31 +1,31 @@
 _co_await_ ifadesi ne yapar ve _awaitable_ bir tür ne anlama gelir?<br>
 _co_await_ anahtar sözcüğü _unary_ bir operatör olarak görev yapar. Yani tek bir operand alır. _co_await_'e verdiğimiz operandın bazı gereklilikleri yerine getirmesi gerekir.<br>
-Kodumuzda _co_await_ ifadesini kullandığımızda, bizim için hazır olabilecek veya olmayabilecek bir şeyi beklediğimizi ifade etmiş oluruz.
+coroutine fonksiyonumuzda _co_await_ operatörünü kullandığımızda, bizim için hazır olabilecek veya olmayabilecek bir şeyi beklediğimizi ifade etmiş oluruz.
 Eğer beklediğimiz şey hazır değilse, _co_await_ o anda çalışmakta olan _coroutine_'i askıya alır (onun çalışmasını durdurur) ve kontrolü _coroutine_'i çağıran koda geri verir. <br>
-Asenkron görev tamamlandığında, çağıran fonksiyon kontrolü başlangıçta görevin bitmesini bekleyen _coroutine_'e geri aktarmalıdır.<br> 
+Asenkron görev tamamlandığında, çağıran fonksiyon, kontrolü başlangıçta görevin bitmesini bekleyen _coroutine_'e geri aktarmalıdır.<br> 
 Aşağıdaki gibi bir ifade olsun:
 
 ```cpp
 co_await X{};
 ```
-
 Bu kodun derlenebilmesi için _X_'in _awaitable_ bir tür olması gerekir. <br> 
-Şimdiye kadar sadece basit _awaitable_ türleri kullandık:<br> 
-_std::suspend_always_ ve _std::suspend_never_. 
-Aşağıda listelenen üç üye işlevi doğrudan uygulayan veya alternatif olarak bu üye işlevlerle bir nesne üretmek için _co_await()_ operatör fonksiyonunu tanımlayan herhangi bir tür, _awaitable_ bir türdür:
+Derleyici _co_await_ operatörünün operandı olan ifadeden yola çıkarak bir _awaiter_ nesnesi oluşturmak zorundadır. Oluşturamaz ise sentaks hatası olur.
+Derleyici önce _promise_type_ sınıfının _await_transform_ isimli bir fonksiyonu olup olmadığını kontrol eder. Eğer _promise_type_ sınıfının _await_transform_ isimli bir fonksiyonu varsa derleyici _co_await_ operatörünün operandı olan ifadeyi bu fonksiyona argüman olarak göndererek bu fonksiyonu çağırır. Bu fonksiyonun geri dönüş değerini _awaitable_ olarak kullanır. Bu kez derleyici buradan elde edilen _awaitable_ sınıfının üye operator _co_await_ fonksiyonunun bulunup bulunmadığına bakar. Eğer _awaitable_ sınıfın vöyle bir fonsiyonu varsa derleyici bu fonksiyonun geri dönüş değerinden _awaiter_ nesnesini oluşturur. Eğer böyle bir üye fonksiyon yok ise derleyici bu kez uygun bir parametreye sahip global operator co_await fonksiyonunun olup olmadığına bakar. Varsa bu fonksiyona _awaitable_ nesnesini argüman olarak gönderir. Böyle bir fonksiyon yok ise bu durumda derleyici doğrudan awaitable nesnesini kullanır. (bu durumda awaitable nesnesi bir awaiter olmak zorundadır.)
+Standart kütüphane bize
+_std::suspend_always_ ve _std::suspend_never_ 
+awaiter sınıflarını hazır olarak sunmaktadır. 
+Aşağıda listelenen üç üye işlevi doğrudan uygulayan veya alternatif olarak bu üye işlevlerle bir nesne üretmek için _co_await()_ operatör fonksiyonunu tanımlayan herhangi bir tür, _awaiter_ bir türdür:
 
 ##### _await_ready()_
-_await_ready_ fonksiyonu sonucun hazır olup olmadığını _(true)_ veya geçerli _coroutine_'i askıya alıp sonucun hazır olmasını beklemek gerekip gerekmediğini ifade eden _bool_ türden bir değer döndürür.
-ayrıntılı açıklama: <br>
-Bu fonksiyonun çağrıldığı _coroutine_ askıya alınmadan (durdurulmadan) hemen önce çağrılır.<br>
+_await_ready_ fonksiyonu sonucun hazır olup olmadığını _(true)_ veya geçerli _coroutine_'i askıya alıp sonucun hazır olmasını beklemek gerekip gerekmediğini ifade eden _bool_ türden bir değer döndürür. Bu fonksiyonun _coroutine_ askıya alınmadan (durdurulmadan) hemen önce çağrılır.<br>
 Askıya almayı (geçici olarak) tamamen kapatmak için kullanılabilir. <br>
 _await_ready_ fonksiyonu _true_ döndürürse, askıya alma isteği reddedilmiş demektir. Yani fonksiyonun _true_ değer döndürmesi _coroutine_'i askıya almadan devam etmeye "hazırız" anlamına gelir.<br>
 Genellikle, bu fonksiyon yalnızca _false_ değer döndürür ("hayır, herhangi bir askıya alma işleminden kaçınmayın/engellemeyin anlamında").<br> 
 Ancak fonksiyonumuz bir koşula bağlı olarak olarak _true_ değer döndürebilir (örneğin, askıya alma bazı verilerin mevcut olmasına bağlıysa).<br>
-Geri dönüş türüyle await_suspend() fonksiyonu da , coroutine'in askıya alınmasını kabul etmeme sinyali de verebilir (true ve false'un burada zıt anlama sahip olduğuna dikkat edin: await_suspend() içinde true döndürerek, askıya alma kabul edilir. <br> 
-_await_ready()_ fonksiyonu ile askıya almayı kabul etmemek, programın _coroutine_'in askıya alınmasını başlatma maliyetinden tasarruf etmesini sağlar.<br>
-Bu fonksiyonun içinde, çağrıldığı coroutine'in henüz askıya alınmadığını unutmayın. 
-Bu fonksiyon içinde _resume()_ ya da destroy() işlevleri (dolaylı olarak) çağrılmamalıdır.<br> 
+
+Geri dönüş türüyle _await_suspend()_ fonksiyonu da , coroutine'in askıya alınmasını kabul etmeme sinyali de verebilir (_true_ ve _false_ geri dönüş değerlerinin burada zıt anlama sahip olduğuna dikkat edin: _await_suspend()_ fonksiyonunun _true_ değer döndürmesi ile askıya alma kabul edilmiş olur <br> 
+_await_ready()_ fonksiyonu ile askıya almayı kabul etmemek, programın _coroutine_'in askıya alınmasını başlatma maliyetinden tasarruf edilmesini sağlar.<br>
+Bu fonksiyonun kodu çalışırken coroutine'in henüz askıya alınmadığını unutmayın. Yani bu fonksiyon içinde _resume()_ ya da destroy() işlevleri (dolaylı olarak) çağrılmamalıdır.
 Bu fonksiyon içişnde askıya alınan _coroutine_ için _resume()_ veya _destroy()_ çağrısı yapılmadığından emin olunduğu sürece daha karmaşık işleri gerçekleştirecek fonksiyonlar bile burada çağrılabilir.
 <br>
 
