@@ -72,8 +72,7 @@ C++ standardı, bir _coroutine_'in fonksiyon gövdesinin aşağıdaki gibi sarma
 }
 // "The coroutine state is destroyed when control flows // off the end of the coroutine"
 ```
-Bir _coroutine_ _return_ ettiğinde, örtülü olarak çağrılan _promise.final_suspend()_ işlevinin geri dönüş değeri _co_await_ operatörünün operandı olur.
-Eğer final_suspend gerçekten coroutine'i durdurursa, coroutine state son bir kez güncellenir ve geçerli kalır ve coroutine dışındaki kod, coroutine handle'ın destroy() fonksiyonunu çağırarak coroutine nesnesini deallocate etmekten sorumlu olur. 
-Eğer final_suspend korutini suspend etmez ize, korutin state otomatik olarak yok edilecektir.
+Bir _coroutine_ _return_ ettiğinde, örtülü olarak çağrılan _promise.final_suspend()_ işlevinin geri dönüş değeri _co_await_ operatörünün operandı olur.<br>
+Eğer _final_suspend_ işlevi gerçekten _coroutine_'i durdurursa, _coroutine state_ son bir kez güncellenir ve geçerli kalır. _coroutine dışındaki_ kod, _coroutine handle_'ın _destroy()_ fonksiyonunu çağırarak _coroutine_ nesnesini ı etmekten sorumlu olur. Eğer _final_suspend_ _coroutin_'i_ suspend_ etmez iae, _coroutine state_ otomatik olarak yok edilecektir.<br>
 Eğer coroutine durumuna bir daha dokunmayı düşünmüyorsanız (belki de coroutine co_return'den önce global bir değişkeni güncellediği ve/veya bir semaforu serbest bıraktığı içindir ve sizin için önemli olan tek şey budur), o zaman durumu son bir kez kaydetmek için para ödemeye ve _coroutine_ durumunu elle serbest bırakma konusunda endişelenmeye gerek yoktur, bu nedenle final_suspend() metodunun std::suspend_never döndürmesini sağlayabilirsiniz.
 <br>Öte yandan, bir _coroutine_ _return_ ettikten sonra _coroutine handle_'ına ya da _promise_ nesnesine erişmeniz gerekiyorsa, _final_suspend()_ işlevinin _std::suspend_always_ (veya _coroutine_'i askıya alan başka bir awaitable nesne) döndürmesi gerekir.
