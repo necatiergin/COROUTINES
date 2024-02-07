@@ -55,14 +55,13 @@ std::coroutine_handle<void> (veya sadece std::coroutine_handle<>)
 
 Bu durumda, promise nesnesine erişilemez.
 Burada parametre için auto sepcifier kullanılarak derleyicinin  tür çıkarımı yapması sağlanabilir.
-await_suspend() işlevinin geri dönüş türü ise şunlar olabilir:
-- await_suspend() içindeki deyimlerin yürütülmesinden sonra sonra askıya alma işlemine devam etmek ve coroutine'i çağırana geri dönmek için void.
-- bool askıya almanın gerçekten gerçekleşip gerçekleşmeyeceğini bildirmek için. Burada false "askıya alma (artık)" anlamına gelir (await_ready() işlevinin Boolean dönüş değerlerinin tersidir).
-- std::coroutine_handle<> yerine başka bir coroutine'i devam ettirmek için.
-Bu await_suspend() kullanımına simetrik aktarım (symmetric transfer) denir ve daha sonra ayrıntılı olarak ele alacağız.
-Bu durumda, bir noop coroutine herhangi bir coroutine'i devam ettirmeme sinyali vermek için kullanılabilir (fonksiyonun false döndürmesi ile aynı şekilde).
-Ek olarak, aşağıdakilere dikkat edilmelidir:
-Üye fonksiyonlar, awaiter'ın değiştirilen bir üyeye sahip olduğu durumlar haricinde genellikle const'tır (örneğin, korutin tanıtıcısını await_suspend() içinde saklayarak yeniden başlatma sırasında kullanılabilir hale getirmek gibi).
-Üye fonksiyonlar genellikle noexcept'tir (final_suspend() içinde kullanıma izin vermek için bu gereklidir).
-Üye fonksiyonlar constexpr olabilir.
+await_suspend() işlevinin geri dönüş türü ise şunlar olabilir:await_suspend() içindeki deyimlerin yürütülmesinden sonra sonra askıya alma işlemine devam etmek ve coroutine'i çağırana geri dönmek için void. <br>
+bool türü : askıya almanın gerçekten gerçekleşip gerçekleşmeyeceğini bildirmek için. Burada false "askıya alma (artık)" anlamına gelir (await_ready() işlevinin Boolean dönüş değerlerinin tersidir).<br>
+- std::coroutine_handle<> yerine başka bir coroutine'i devam ettirmek için. <br>
+Bu await_suspend() kullanımına simetrik aktarım (symmetric transfer) denir ve daha sonra ayrıntılı olarak ele alacağız.<br>
+Bu durumda, bir noop coroutine herhangi bir coroutine'i devam ettirmeme sinyali vermek için kullanılabilir (fonksiyonun false döndürmesi ile aynı şekilde).<br>
+Ek olarak, aşağıdakilere dikkat edilmelidir:<br>
+Üye fonksiyonlar, awaiter'ın değiştirilen bir üyeye sahip olduğu durumlar haricinde genellikle const'tır (örneğin, korutin tanıtıcısını await_suspend() içinde saklayarak yeniden başlatma sırasında kullanılabilir hale getirmek gibi). <br>
+Üye fonksiyonlar genellikle noexcept'tir (final_suspend() içinde kullanıma izin vermek için bu gereklidir). <br>
+Üye fonksiyonlar _constexpr_ olabilir. <br>
 
