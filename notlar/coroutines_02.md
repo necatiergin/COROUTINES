@@ -1,5 +1,6 @@
 ![relations](https://github.com/necatiergin/COROUTINES/blob/main/notlar/coroutine_realations.png)
-Caller ve coroutine, normalde uygulama kodumuzda uygulayacağımız gerçek fonksiyonlardır.
+
+Caller ve coroutine, normalde uygulama kodumuzda uygulayacağımız gerçek fonksiyonlardır.<br>
 Dönüş Nesnesi, coroutine'in döndürdüğü türdür ve tipik olarak, örneğin jeneratörler veya asenkron görevler gibi bazı özel kullanım durumları için tasarlanmış genel bir sınıf şablonudur. 
 Çağıran, coroutine'i devam ettirmek ve coroutine'den yayılan değerleri almak için return nesnesi ile etkileşime girer. 
 Geri dönüş nesnesi genellikle tüm çağrılarını coroutine tanıtıcısına devreder.
