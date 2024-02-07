@@ -23,6 +23,7 @@ co_await prm.initial_suspend();
 
 Bu yüzden fonksiyonun geri dönüş türü bir _"awaitable"_ tür olmalı.<br>
 Eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_always_ olmalı.
+
 ```cpp
 struct promise_type {
 	//...
@@ -112,6 +113,7 @@ struct promise_type {
 		//...
 	}
 };
+```
 
 Bu durumda _coroutine_ birden fazla ve farklı türden ifadelere sahip _co_return statement_'a sahip olabilir.
 
