@@ -57,11 +57,12 @@ Bu durumda, promise nesnesine erişilemez.
 Burada parametre için auto sepcifier kullanılarak derleyicinin  tür çıkarımı yapması sağlanabilir.
 await_suspend() işlevinin geri dönüş türü ise şunlar olabilir:await_suspend() içindeki deyimlerin yürütülmesinden sonra sonra askıya alma işlemine devam etmek ve coroutine'i çağırana geri dönmek için void. <br>
 bool türü : askıya almanın gerçekten gerçekleşip gerçekleşmeyeceğini bildirmek için. Burada false "askıya alma (artık)" anlamına gelir (await_ready() işlevinin Boolean dönüş değerlerinin tersidir).<br>
-- std::coroutine_handle<> yerine başka bir coroutine'i devam ettirmek için. <br>
-Bu await_suspend() kullanımına simetrik aktarım (symmetric transfer) denir ve daha sonra ayrıntılı olarak ele alacağız.<br>
+_std::coroutine_handle<>_ türü<br>
+yerine başka bir coroutine'i devam ettirmek için. <br>
+_Bu await_suspend()_ kullanımına simetrik aktarım (symmetric transfer) denir ve daha sonra ayrıntılı olarak ele alacağız.<br>
 Bu durumda, bir noop coroutine herhangi bir coroutine'i devam ettirmeme sinyali vermek için kullanılabilir (fonksiyonun false döndürmesi ile aynı şekilde).<br>
 Ek olarak, aşağıdakilere dikkat edilmelidir:<br>
-Üye fonksiyonlar, awaiter'ın değiştirilen bir üyeye sahip olduğu durumlar haricinde genellikle const'tır (örneğin, korutin tanıtıcısını await_suspend() içinde saklayarak yeniden başlatma sırasında kullanılabilir hale getirmek gibi). <br>
+Üye fonksiyonlar, _awaiter_'ın değiştirilen bir üyeye sahip olduğu durumlar haricinde genellikle _const_'tır (örneğin, coroutine handle'ını await_suspend() içinde saklayarak yeniden başlatma sırasında kullanılabilir hale getirmek gibi). <br>
 Üye fonksiyonlar genellikle noexcept'tir (final_suspend() içinde kullanıma izin vermek için bu gereklidir). <br>
 Üye fonksiyonlar _constexpr_ olabilir. <br>
 
