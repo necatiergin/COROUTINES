@@ -8,18 +8,20 @@ co_return expr;
 
 deyimi kullanabilir.
 
-Bu durumda, derleyici prom ilgili promise nesnesi olmak üzere, kodu
+Bu durumda, derleyici `prom` ilgili _promise_ nesnesi olmak üzere, kodu
 
+```cpp
 prom.return_value(e);
-
+```
 çağrısına dönüştürür.
 
+2. _coroutine_'i son bir değer olmadan (değersiz olarak) sonlandırmak için 
 
-2. coroutine'i nihai bir değer olmadan (değersiz)sonlandırmak için 
-
+```cpp
 co_return;
+```
 
-deyimini kullanabiliriz.
+deyimi kullananılabilir.
 
 Bu durumda, derleyici prom promise nesnesi olmak üzere kodu
 
