@@ -12,7 +12,7 @@
 
 bu fonksiyon derleyicinin ürettiği kod tarafından _coroutine_ arayüzünü oluşturması için çağrılır. _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda _coroutine_'in geri dönüş değeri ile iletilir. _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
 
-#### initial_suspend();
+#### _initial_suspend();_
 bu fonksiyon, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını veriyor. derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılıyor:
 
 ```cpp
@@ -58,10 +58,10 @@ Bu fonksiyon _coroutine frame_ tarafından _coroutine_ gövdesini içine alan _t
 
 #### _unhandled_exception()_
 
-#### return_void ()
+#### _return_void();_
 _coroutine_ çalışmasının sonucunda çağıran koda bir değer üretmeyecek ise bu fonksiyonun tanımlanması gerekiyor.
 
-#### return_value()
+#### _return_value()_;
 _coroutine_ çalışmasının sonucunda çağıran koda bir değer üretecek ise bu fonksiyonun tanımlanması gerekiyor.
 
 
