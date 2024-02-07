@@ -39,9 +39,41 @@ prom.return_void();
 _co_return_ hakkında dikkat edilmesi gereken önemli bir nokta var: _co_return_ deyimi kullanılmadığı sürece `return_void()` fonksiyonunun tanımlanmamış olması bir sorun oluşturmaz. Ancak _co_return_ deyimi kullanılmışsa ve _promise_ sınıfının _return_void_ ya da _return_value_ fonksiyonları yok ise olmayan fonksiyon sentaks hatası oluşturur. 
 Eğer programın akışı bir _coroutine_ fonksiyonun sonuna kadar gelirse ve _promise_type_ sınıfının _return_void()_ fonksiyonu yok ise bu durum tanımsız davranıştır. 
 
+
+
 Bir _coroutine_'in tamamlanıp tamamlanmadığını öğrenmek için _coroutine_handle_ nesnesini kullanarak std::coroutine_handle sınıfının `done` isimli fonksiyonunu çağırabiliriz:
 
 ```cpp
 bool coroutine handle<>::done();
 ```
 Fonksiyonun _true_ değer döndürmesi _coroutin_'in çalışmasını tamamladığını _false_ değer döndürmesi ise _coroutine_'in henüz çalışmasını tamamlamadığını gösterir.
+
+_co_return_ ile ilgili dikkat edilmesi gereken diğer bir nokta daha var:
+hem _promise_type::return_void()_ hem de _promise_type::return_value()_ _void_ fonksiyonlardır. Yani bir değer döndürmezler. Yani diğer fonksiyonlardan farklı olarak bu fonksiyonların geri dönüş değeri _awaitable_ türlerinden değildir. <br>
+Peki bir _coroutine_'in sonunda ne yapılır? 
+Derleyici _coroutine_ durumunu güncellemeli ve _coroutine_'i son bir kez durdurmalı mıdır, böylece _co_return_ yürüt sonra bile ana işlevdeki kod promise nesnesine erişebilir ve _coroutine_handle_'ı mantıklı bir şekilde kullanabilir mi?
+Yoksa bir _coroutine_'den dönüldüğünde _coroutine_handle::destroy()_ fonksiyonuna yapılan örtülü bir çağrı gibi _coroutine frame_'i otomatik olarak yok mu etmelidir?
+Bu soru _promise_type_'ın _final_suspend_ fonksiyonu ile çözülür. 
+C++ standardı, bir _coroutine_'in fonksiyon gövdesinin aşağıdaki gibi sarmalandığını söyler _(pseudo code)_
+
+```cpp
+{
+	promise-type promise promise-constructor-arguments ;
+	try {
+		co_await promise.initial_suspend() ;
+		function-body
+	} catch ( ... ) {
+	if (!initial-await-resume-called)
+		throw ;
+		promise.unhandled_exception() ;
+	}
+	final-suspend :
+	co_await promise.final_suspend() ;
+}
+// "The coroutine state is destroyed when control flows // off the end of the coroutine"
+```
+Bir _coroutine_ _return_ ettiğinde, örtülü olarak çağrılan _promise.final_suspend()_ işlevinin geri dönüş değeri _co_await_ operatörünün operandı olur.
+Eğer final_suspend gerçekten coroutine'i durdurursa, coroutine state son bir kez güncellenir ve geçerli kalır ve coroutine dışındaki kod, coroutine handle'ın destroy() fonksiyonunu çağırarak coroutine nesnesini deallocate etmekten sorumlu olur. 
+Eğer final_suspend korutini suspend etmez ize, korutin state otomatik olarak yok edilecektir.
+Eğer coroutine durumuna bir daha dokunmayı düşünmüyorsanız (belki de coroutine co_return'den önce global bir değişkeni güncellediği ve/veya bir semaforu serbest bıraktığı içindir ve sizin için önemli olan tek şey budur), o zaman durumu son bir kez kaydetmek için para ödemeye ve coroutine durumunu elle serbest bırakma konusunda endişelenmeye gerek yoktur, bu nedenle final_suspend() metodunun std::suspend_never döndürmesini sağlayabilirsiniz.
+Öte yandan, bir coroutine döndükten sonra coroutine handle'ına veya promise nesnesine erişmeniz gerekiyorsa, final_suspend() işlevinin std::suspend_always (veya coroutine'i askıya alan başka bir beklenebilir nesne) döndürmesi gerekir.
