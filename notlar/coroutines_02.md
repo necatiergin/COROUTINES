@@ -1,3 +1,4 @@
+![Referans bir isim](google.com/img.png)
 Caller ve coroutine, normalde uygulama kodumuzda uygulayacağımız gerçek fonksiyonlardır.
 Dönüş Nesnesi, coroutine'in döndürdüğü türdür ve tipik olarak, örneğin jeneratörler veya asenkron görevler gibi bazı özel kullanım durumları için tasarlanmış genel bir sınıf şablonudur. 
 Çağıran, coroutine'i devam ettirmek ve coroutine'den yayılan değerleri almak için return nesnesi ile etkileşime girer. 
