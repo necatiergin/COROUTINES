@@ -17,17 +17,16 @@ Aşağıda listelenen üç üye işlevi doğrudan uygulayan veya alternatif olar
 ##### _await_ready()_
 _await_ready_ fonksiyonu sonucun hazır olup olmadığını _(true)_ veya geçerli _coroutine_'i askıya alıp sonucun hazır olmasını beklemek gerekip gerekmediğini ifade eden _bool_ türden bir değer döndürür.
 ayrıntılı açıklama: <br>
-Bu fonksiyonun çağrıldığı _coroutine_ askıya alınmadan (durdurulmadan) hemen önce çağrılır.
-Askıya almayı (geçici olarak) tamamen kapatmak için kullanılabilir. 
-_await_ready_ fonksiyonu _true_ döndürürse, askıya alma isteği reddedilmiş demekti. Yani fonksiyonun _true_ değer döndürmesi _coroutine_'i askıya almadan devam etmeye "hazırız" anlamına gelir.<br>
+Bu fonksiyonun çağrıldığı _coroutine_ askıya alınmadan (durdurulmadan) hemen önce çağrılır.<br>
+Askıya almayı (geçici olarak) tamamen kapatmak için kullanılabilir. <br>
+_await_ready_ fonksiyonu _true_ döndürürse, askıya alma isteği reddedilmiş demektir. Yani fonksiyonun _true_ değer döndürmesi _coroutine_'i askıya almadan devam etmeye "hazırız" anlamına gelir.<br>
 Genellikle, bu fonksiyon yalnızca _false_ değer döndürür ("hayır, herhangi bir askıya alma işleminden kaçınmayın/engellemeyin anlamında").<br> 
 Ancak fonksiyonumuz bir koşula bağlı olarak olarak _true_ değer döndürebilir (örneğin, askıya alma bazı verilerin mevcut olmasına bağlıysa).<br>
-Geri dönüş türüyle await_suspend(), coroutine'in askıya alınmasını kabul etmeme sinyali de verebilir (true ve false'un burada zıt anlama sahip olduğuna dikkat edin: await_suspend() içinde true döndürerek,
-askıya alma kabul edilir). 
-await_ready() ile askıya almayı kabul etmemek, programın coroutine'in askıya alınmasını başlatma maliyetinden tasarruf etmesini sağlar.
+Geri dönüş türüyle await_suspend() fonksiyonu da , coroutine'in askıya alınmasını kabul etmeme sinyali de verebilir (true ve false'un burada zıt anlama sahip olduğuna dikkat edin: await_suspend() içinde true döndürerek, askıya alma kabul edilir. <br> 
+_await_ready()_ fonksiyonu ile askıya almayı kabul etmemek, programın _coroutine_'in askıya alınmasını başlatma maliyetinden tasarruf etmesini sağlar.<br>
 Bu fonksiyonun içinde, çağrıldığı coroutine'in henüz askıya alınmadığını unutmayın. 
-Burada resume() veya destroy() işlevlerini (dolaylı olarak) çağırmayın. 
-Bu mantığın burada askıya alınan coroutine için resume() veya destroy() çağrısı yapmadığından emin olduğunuz sürece daha karmaşık iş mantıklarını bile burada çağırabilirsiniz.
+Bu fonksiyon içinde _resume()_ ya da destroy() işlevleri (dolaylı olarak) çağrılmamalıdır.<br> 
+Bu fonksiyon içişnde askıya alınan _coroutine_ için _resume()_ veya _destroy()_ çağrısı yapılmadığından emin olunduğu sürece daha karmaşık işleri gerçekleştirecek fonksiyonlar bile burada çağrılabilir.
 <br>
 
 #### _await_suspend (coroutine_handle)_ 
