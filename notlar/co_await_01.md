@@ -41,7 +41,7 @@ Bunu desteklemek için özel geri dönüş türleri kullanılabilir (bu durum a�
 Hatta burada _coroutine_ _destroy_ edilebilir.  Ancak bu durumda _coroutine_'in başka bir yerde kullanılmadığından emin olmanız gerekir (örneğin bir _coroutine_ arayüzünde _done()_ çağrısı yapmak gibi). <br>
 
 #### _await_resume()_
-Snucu (veya hatayı) coroutine'e geri paketlemekten sorumlu fonksiyondur. <br>
+Sonucu (veya hatayı) coroutine'e geri paketlemekten sorumlu fonksiyondur. <br>
 _await_suspend()_ tarafından başlatılan çalışma sırasında bir hata meydana gelmişse, bu işlev yakalanan hatayı yeniden atabilir veya bir hata kodu döndürebilir. 
 Tüm co_await ifadesinin değeri _await_resume()_ fonksiyonunun döndürdüğü değerdir.
 
@@ -50,13 +50,13 @@ _await_suspend() _burada anahtar fonksiyondur. Bu fonksiyonun arametre değişke
 _await_suspend()_ fonksiyonunun parametresi şunlar olabilir:<br>
 _Coroutine_'in kendi handle türü :
 std::coroutine_handle<PrmType>
-Tüm coroutine handle'ları için kullanılabilen temel bir tür:
-std::coroutine_handle<void> (veya sadece std::coroutine_handle<>)
-
+Tüm _coroutine handle'ları _için kullanılabilen temel bir tür: std::coroutine_handle<void> (veya sadece std::coroutine_handle<>)<br>
 Bu durumda, promise nesnesine erişilemez.
 Burada parametre için auto sepcifier kullanılarak derleyicinin  tür çıkarımı yapması sağlanabilir.
-await_suspend() işlevinin geri dönüş türü ise şunlar olabilir:await_suspend() içindeki deyimlerin yürütülmesinden sonra sonra askıya alma işlemine devam etmek ve coroutine'i çağırana geri dönmek için void. <br>
-bool türü : askıya almanın gerçekten gerçekleşip gerçekleşmeyeceğini bildirmek için. Burada false "askıya alma (artık)" anlamına gelir (await_ready() işlevinin Boolean dönüş değerlerinin tersidir).<br>
+
+_await_suspend()_ işlevinin geri dönüş türü ise şunlar olabilir:<br>
+_await_suspend()_ içindeki deyimlerin yürütülmesinden sonra sonra askıya alma işlemine devam etmek ve coroutine'i çağırana geri dönmek için void. <br>
+_bool_ türü : askıya almanın gerçekten gerçekleşip gerçekleşmeyeceğini bildirmek için. Burada false "askıya alma (artık)" anlamına gelir (await_ready() işlevinin Boolean dönüş değerlerinin tersidir).<br>
 _std::coroutine_handle<>_ türü<br>
 yerine başka bir coroutine'i devam ettirmek için. <br>
 _Bu await_suspend()_ kullanımına simetrik aktarım (symmetric transfer) denir ve daha sonra ayrıntılı olarak ele alacağız.<br>
