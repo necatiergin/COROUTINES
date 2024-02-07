@@ -23,24 +23,23 @@ co_return;
 
 deyimi kullananılabilir.
 
-Bu durumda, derleyici prom promise nesnesi olmak üzere kodu
+Bu durumda, derleyici `prom` _promise_ nesnesi olmak üzere kodu
 
+```cpp
 prom.return_void();
-
+```
 çağrısına dönüştürür.
 
+3. _coroutine_'in yürütülmesiyle programın akışı fonksiyonun kodunun sonuna kadar gelir. Bu durumda, derleyici prom promise nesnesi olmak üzere koda
 
-3. coroutine'in yürütülmesiyle programın akışı fonksiyonun kodunun sonuna kadar gelir.
-Bu durumda, derleyici prom promise nesnesi olmak üzere kodu
-
+```
 prom.return_void();
+```
+çağrısını ekler.<br>
 
-çağrısına dönüştürür.
+Bir _coroutine_'in tamamlanıp tamamlanmadığını öğrenmek için _coroutine_handle_ nesnesini kullanarak std::coroutine_handle sınıfının `done` isimli fonksiyonunu çağırabiliriz:
 
-
-Bir coroutine'in tamamlanıp tamamlanmadığını öğrenmek için coroutine_handle nesnesini kullanarak 
-coroutine handle sınıfını done isimli fonksiyonunu çağırabiliriz:
-
+```cpp
 bool coroutine handle<>::done();
-
-fonksiyonun true değer döndürmesi corotuin'in çalışmasını tamamladığını fasle değer döndürmesi ise coroutine'in henüz çalışmasını tamamlamadığını gösterir.
+```
+Fonksiyonun _true_ değer döndürmesi _coroutin_'in çalışmasını tamamladığını _false_ değer döndürmesi ise _coroutine_'in henüz çalışmasını tamamlamadığını gösterir.
