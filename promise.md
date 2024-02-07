@@ -129,7 +129,34 @@ ReturnType corofunc()
 	co_return val;
 }
 ```
+<!--
+yield_value(Type)
+yield_value(Type) is called if the coroutine reaches a co_yield statement.
+For basic details, see the coroutine example with co_yield.
 
+struct promise_type {
+	//...
+	auto yield_value(int val) 
+	{ 
+		return std::suspend_always{}; // - suspend coroutine
+	}
+
+	auto yield_value(std::string val) 
+	{ 
+		return std::suspend_always{}; // - suspend coroutine
+	}
+};
+
+
+Promises can also be used to define some optional operations that define special behavior of coroutines, where normally some default behavior is used.
+await_transform()
+await_transform() can be defined to map values from co_await to awaiters.
+operator new() and operator delete()
+operator new() and operator delete() allow programmers to define a different way memory is allocated for the coroutine state.
+These functions may also be used to ensure that coroutines do not accidentally use heap memory.
+get_return_object_on_allocation_failure()
+get_return_object_on_allocation_failure() allows programmers to define how to react to exceptionless failures of memory allocation for coroutines.
+-->
 
 
 
