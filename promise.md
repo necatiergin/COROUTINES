@@ -72,12 +72,61 @@ struct promise_type {
 };
 ```
 #### _unhandled_exception()_
+_co_yield_ veya _co_return_'ün kullanılıp kullanılmadığına ve nasıl kullanıldığına bağlı olarak, aşağıdaki fonksiyonlardan bazılarının _promise_ sınıfı tarafından tanımlanması gerekir. _coroutin_'in sonunda çağrılmak üzere aşağıdaki fonksiyonlardan birinin tanımlanması gerekir:
 
 #### _return_void();_
-_coroutine_ çalışmasının sonucunda çağıran koda bir değer üretmeyecek ise bu fonksiyonun tanımlanması gerekiyor.
+_coroutine_ çalışmasının sonucunda çağıran koda bir değer üretmeyecek ise bu fonksiyonun tanımlanması gerekiyor. _coroutine_ sona ulaştığında (gövdesinin sonuna ulaştığında ya da argümansız bir _co_return_ ifadesine ulaştığında) çağrılır.
 
 #### _return_value()_;
-_coroutine_ çalışmasının sonucunda çağıran koda bir değer üretecek ise bu fonksiyonun tanımlanması gerekiyor.
+_coroutine_ çalışmasının sonucunda çağıran koda bir değer üretecek ise bu fonksiyonun tanımlanması gerekiyor. _coroutine_ bir argümanlı bir _co_return_ ifadesine ulaşırsa çağrılır. Aktarılan argüman belirtilen türde olmalı veya bu türe dönüştürülmelidir.
+_coroutine_'nin geri bir noktada geri dönüş değeri üretmesi fakat bir başka sonlanma noktasında  geri dönüş değeri üretmemesi tanımsız davranıştır.
+
+```cpp
+ResultType corofunc(/* */ )
+{
+	if ( /* */ ) {
+		co_return 42;
+	}
+}
+```
+
+Yukarıdaki _coroutine_ geçerli değildir. 
+Hem _return_void()_ hem de _return_value()_ fonksiyonunun çağrılması doğru değildir. üstelik 
+```cpp
+return_value(int);
+```
+gibi bir fonksiyonun tanımlanması durumunda derleyici yukarıdaki kod için bir bir uyarı mesajı da vermeyebilir.
+
+Farkklı imzaya sahip birden fazla _return_value_ fonksiyonu tanımlanabilir yani _return_value_ fonksiyonu _overload_ edilebilir. Hatta _return_value_ fonksiyonu _generic_ olarak da tanımlanabilir.
+
+```cpp
+struct promise_type {
+	//...
+	void return_value(int val) 
+	{ 
+		//...	
+	}
+
+	void return_value(std::string val) 
+	{ 
+		//...
+	}
+};
+
+Bu durumda _coroutine_ birden fazla ve farklı türden ifadelere sahip _co_return statement_'a sahip olabilir.
+
+```cpp
+ReturnType corofunc()
+{
+	int val{0};
+	if ( ... ) 
+	{
+		co_return "error";
+	}
+	
+	co_return val;
+}
+```
 
 
 
