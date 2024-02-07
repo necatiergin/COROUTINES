@@ -40,11 +40,29 @@ Burada, askıya alınan _coroutine_'i veya bekleyen _coroutine_'i hemen devam et
 Bunu desteklemek için özel geri dönüş türleri kullanılabilir (bu durum aşağıda ele alınacaktır).<br>
 Hatta burada _coroutine_ _destroy_ edilebilir.  Ancak bu durumda _coroutine_'in başka bir yerde kullanılmadığından emin olmanız gerekir (örneğin bir _coroutine_ arayüzünde _done()_ çağrısı yapmak gibi). <br>
 
-
-
-
 #### _await_resume()_
 Snucu (veya hatayı) coroutine'e geri paketlemekten sorumlu fonksiyondur. <br>
 _await_suspend()_ tarafından başlatılan çalışma sırasında bir hata meydana gelmişse, bu işlev yakalanan hatayı yeniden atabilir veya bir hata kodu döndürebilir. 
 Tüm co_await ifadesinin değeri _await_resume()_ fonksiyonunun döndürdüğü değerdir.
+
+
+_await_suspend() _burada anahtar fonksiyondur. Bu fonksiyonun arametre değişkeni ve geri dönüş değeri aşağıdaki gibi olabilir:<br>
+_await_suspend()_ fonksiyonunun parametresi şunlar olabilir:<br>
+_Coroutine_'in kendi handle türü :
+std::coroutine_handle<PrmType>
+Tüm coroutine handle'ları için kullanılabilen temel bir tür:
+std::coroutine_handle<void> (veya sadece std::coroutine_handle<>)
+
+Bu durumda, promise nesnesine erişilemez.
+Burada parametre için auto sepcifier kullanılarak derleyicinin  tür çıkarımı yapması sağlanabilir.
+await_suspend() işlevinin geri dönüş türü ise şunlar olabilir:
+- await_suspend() içindeki deyimlerin yürütülmesinden sonra sonra askıya alma işlemine devam etmek ve coroutine'i çağırana geri dönmek için void.
+- bool askıya almanın gerçekten gerçekleşip gerçekleşmeyeceğini bildirmek için. Burada false "askıya alma (artık)" anlamına gelir (await_ready() işlevinin Boolean dönüş değerlerinin tersidir).
+- std::coroutine_handle<> yerine başka bir coroutine'i devam ettirmek için.
+Bu await_suspend() kullanımına simetrik aktarım (symmetric transfer) denir ve daha sonra ayrıntılı olarak ele alacağız.
+Bu durumda, bir noop coroutine herhangi bir coroutine'i devam ettirmeme sinyali vermek için kullanılabilir (fonksiyonun false döndürmesi ile aynı şekilde).
+Ek olarak, aşağıdakilere dikkat edilmelidir:
+Üye fonksiyonlar, awaiter'ın değiştirilen bir üyeye sahip olduğu durumlar haricinde genellikle const'tır (örneğin, korutin tanıtıcısını await_suspend() içinde saklayarak yeniden başlatma sırasında kullanılabilir hale getirmek gibi).
+Üye fonksiyonlar genellikle noexcept'tir (final_suspend() içinde kullanıma izin vermek için bu gereklidir).
+Üye fonksiyonlar constexpr olabilir.
 
