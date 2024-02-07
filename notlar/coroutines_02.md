@@ -11,7 +11,6 @@ _Coroutine Handle_ aracılığıyla _Coroutine_ durumunu devam ettirebilir ve yo
 _Coroutine State_, _coroutine frame_ olarak adlandırılan varlıktır. Opak bir nesnedir, yani boyutunu bielmeyiz ve handle'ı kullanmadan başka bir şekilde erişemeyiz. _Coroutine State_'e  erişmenin tek yolu _Coroutine Handle_'dır.<br>
 _Coroutine State_, _coroutine_'i en son askıya alındığı _(durdurulduğu- suspend edildiği)_ yerden devam ettirmek için gerekli olan tüm bilgileri saklar. <br>
 _Coroutine State_ ayrıca _Promise_ nesnesini de içerir.
-Promise nesnesi, coroutine'in co_await, co_yield ve co_return anahtar sözcükleri aracılığıyla dolaylı olarak iletişim kurduğu şeydir. 
-Değerler veya hatalar coroutine'den gönderilirse, önce promise nesnesine ulaşırlar. 
-Söz nesnesi, coroutine ile çağıran arasında bir kanal görevi görür, ancak her ikisinin de söze doğrudan erişimi yoktur.
-Kuşkusuz, bu ilk bakışta oldukça yoğun görünebilir. Eksiksiz ancak minimal bir örnek, farklı parçaları biraz anlamanıza yardımcı olacaktır
+_Promise_ nesnesi, _Coroutine_'in `co_await`, `co_yield` ve `co_return` ifadeleri aracılığıyla dolaylı olarak iletişim kurduğu varlıktır. <br>
+_Değerler_ veya _exception_'lar _Coroutine_'den gönderildiğinde önce _Promise_ nesnesine ulaşırlar. <br> 
+_Promise_ nesnesi, _Coroutine_ ile _Caller_ arasında bir kanal görevi görür, ancak her ikisinin de Promise nesnesine doğrudan erişimi yoktur.<br>
