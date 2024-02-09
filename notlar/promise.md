@@ -15,14 +15,14 @@ Bir _coroutine_ başlatıldığında _promise_ nesnesini oluşturmak için _coro
 Bu fonksiyon derleyicinin ürettiği kod tarafından _coroutine_ arayüzünü oluşturması için çağrılır. _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda _coroutine_'in geri dönüş değeri ile iletilir. _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
 
 #### _initial_suspend();_
-Bu fonksiyon, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını veriyor. Derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılıyor:
+Bu fonksiyon, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını verir. Derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılır:
 
 ```cpp
 co_await prm.initial_suspend();
 ```
 
-Bu yüzden fonksiyonun geri dönüş türü bir _"awaitable"_ tür olmalı.<br>
-Eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_always_ olmalı.
+Bu yüzden fonksiyonun geri dönüş türü bir _"awaitable"_ tür olmalıdır.<br>
+Eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini isteniyorsa bu fonksiyonun geri dönüş değeri _std::suspect_always_ olmalıdır.
 
 ```cpp
 struct promise_type {
@@ -34,7 +34,7 @@ struct promise_type {
 	//...
 }
 ```
-Eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesini istemiyorsak bu fonksiyonun geri dönüş değeri _std::suspect_never_ olmalı.
+Eğer _coroutine_'in başlar başlamaz ilk kez _suspend_ edilmesi istenmiyor ise bu fonksiyonun geri dönüş değeri _std::suspect_never_ olmalıdır.
 
 ```cpp
 struct promise_type {
@@ -47,7 +47,7 @@ struct promise_type {
 }
 ```
 
-Tabi bu fonksiyon, _coroutine_ başlatıldığında suspend edilip edilmeyeceği kararının çalışma zamanında değerlendirilen koşullara göre verilmesini de sağlayabilir. Yine bu fonksiyon içinde _promise_type_ nesnesinin veri elemanlarına atama yapabiliriz.
+Tabi bu fonksiyon, _coroutine_ başlatıldığında _suspend_ edilip edilmeyeceği kararının çalışma zamanında değerlendirilen koşullara göre verilmesini de sağlayabilir. Yine bu fonksiyon içinde _promise_type_ nesnesinin veri elemanlarına atama yapılabilir.
 
 #### _final_suspend() noexcept;_
 Bu fonksiyon _coroutine_'in son kez _suspend_ edilebileceği noktayı belirler ve derleyicinin ürettiği kodda aşağıdaki gibi çağrılır:<br>
@@ -76,10 +76,10 @@ struct promise_type {
 _co_yield_ veya _co_return_'ün kullanılıp kullanılmadığına ve nasıl kullanıldığına bağlı olarak, aşağıdaki fonksiyonlardan bazılarının _promise_ sınıfı tarafından tanımlanması gerekir. _coroutin_'in sonunda çağrılmak üzere aşağıdaki fonksiyonlardan birinin tanımlanması gerekir:
 
 #### _return_void();_
-_coroutine_ çalışmasının sonucunda çağıran koda bir değer üretmeyecek ise bu fonksiyonun tanımlanması gerekiyor. _coroutine_ sona ulaştığında (gövdesinin sonuna ulaştığında ya da argümansız bir _co_return_ ifadesine ulaştığında) çağrılır.
+_coroutine_ çalışmasının sonucunda çağıran koda bir değer üretmeyecek ise bu fonksiyonun tanımlanması gerekir. _coroutine_ sona ulaştığında (gövdesinin sonuna ulaştığında ya da argümansız bir _co_return_ ifadesine ulaştığında) çağrılır.
 
 #### _return_value()_;
-_coroutine_ çalışmasının sonucunda çağıran koda bir değer üretecek ise bu fonksiyonun tanımlanması gerekiyor. _coroutine_ bir argümanlı bir _co_return_ ifadesine ulaşırsa çağrılır. Aktarılan argüman belirtilen türde olmalı veya bu türe dönüştürülmelidir.
+_coroutine_ çalışmasının sonucunda çağıran koda bir değer üretecek ise bu fonksiyonun tanımlanması gerekir. _coroutine_ bir argümanlı bir _co_return_ ifadesine ulaşırsa çağrılır. Aktarılan argüman belirtilen türde olmalı veya bu türe dönüştürülmelidir.
 _coroutine_'nin geri bir noktada geri dönüş değeri üretmesi fakat bir başka sonlanma noktasında  geri dönüş değeri üretmemesi tanımsız davranıştır.
 
 ```cpp
