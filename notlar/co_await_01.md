@@ -1,8 +1,7 @@
 _co_await_ ifadesi ne yapar ve _awaitable_ bir tür ne anlama gelir?<br>
 _co_await_ anahtar sözcüğü _unary_ bir operatör olarak görev yapar. Yani tek bir operand alır. _co_await_'e verdiğimiz operandın bazı gereklilikleri yerine getirmesi gerekir.<br>
-coroutine fonksiyonumuzda _co_await_ operatörünü kullandığımızda, bizim için hazır olabilecek veya olmayabilecek bir şeyi beklediğimizi ifade etmiş oluruz.
-Eğer beklediğimiz şey hazır değilse, _co_await_ o anda çalışmakta olan _coroutine_'i askıya alır (onun çalışmasını durdurur) ve kontrolü _coroutine_'i çağıran koda geri verir. <br>
-Asenkron görev tamamlandığında, çağıran fonksiyon, kontrolü başlangıçta görevin bitmesini bekleyen _coroutine_'e geri aktarmalıdır.<br> 
+_coroutine_ fonksiyonumuzda _co_await_ operatörünü kullandığımızda, bizim için hazır olabilecek veya olmayabilecek bir şeyi beklediğimizi ifade etmiş oluruz.
+Eğer beklediğimiz şey hazır değilse, _co_await_ o anda çalışmakta olan _coroutine_'i askıya alır, yani onun çalışmasını durdurur ve kontrolü _coroutine_'i çağıran koda geri verir. Asenkron görev tamamlandığında, çağıran fonksiyon, kontrolü başlangıçta görevin bitmesini bekleyen _coroutine_'e geri aktarmalıdır.<br> 
 Aşağıdaki gibi bir ifade olsun:
 
 ```cpp
@@ -10,10 +9,11 @@ co_await X{};
 ```
 Bu kodun derlenebilmesi için _X_'in _awaitable_ bir tür olması gerekir. <br> 
 Derleyici _co_await_ operatörünün operandı olan ifadeden yola çıkarak bir _awaiter_ nesnesi oluşturmak zorundadır. Oluşturamaz ise sentaks hatası olur.
-Derleyici önce _promise_type_ sınıfının _await_transform_ isimli bir fonksiyonu olup olmadığını kontrol eder. Eğer _promise_type_ sınıfının _await_transform_ isimli bir fonksiyonu varsa derleyici _co_await_ operatörünün operandı olan ifadeyi bu fonksiyona argüman olarak göndererek bu fonksiyonu çağırır. Bu fonksiyonun geri dönüş değerini _awaitable_ olarak kullanır. Bu kez derleyici buradan elde edilen _awaitable_ sınıfının üye operator _co_await_ fonksiyonunun bulunup bulunmadığına bakar. Eğer _awaitable_ sınıfın vöyle bir fonsiyonu varsa derleyici bu fonksiyonun geri dönüş değerinden _awaiter_ nesnesini oluşturur. Eğer böyle bir üye fonksiyon yok ise derleyici bu kez uygun bir parametreye sahip global operator co_await fonksiyonunun olup olmadığına bakar. Varsa bu fonksiyona _awaitable_ nesnesini argüman olarak gönderir. Böyle bir fonksiyon yok ise bu durumda derleyici doğrudan awaitable nesnesini kullanır. (bu durumda awaitable nesnesi bir awaiter olmak zorundadır.)
+- Derleyici önce _promise_type_ sınıfının _await_transform_ isimli bir fonksiyonu olup olmadığını kontrol eder. Eğer _promise_type_ sınıfının _await_transform_ isimli bir fonksiyonu varsa derleyici _co_await_ operatörünün operandı olan ifadeyi bu fonksiyona argüman olarak göndererek bu fonksiyonu çağırır. Bu fonksiyonun geri dönüş değerini _awaitable_ olarak kullanır. Yoksa co_await operatörünün operandı olan ifade doğrudan _awaitable_ olarak kullanılır.
+- Bu kez derleyici buradan elde edilen _awaitable_ sınıfının üye operator _co_await_ fonksiyonunun bulunup bulunmadığına bakar. Eğer _awaitable_ sınıfın vöyle bir fonsiyonu varsa derleyici bu fonksiyonun geri dönüş değerinden _awaiter_ nesnesini oluşturur. Eğer böyle bir üye fonksiyon yok ise derleyici bu kez uygun bir parametreye sahip global _operator co_await_ fonksiyonunun olup olmadığına bakar. Varsa bu fonksiyona _awaitable_ nesnesini argüman olarak gönderir. Böyle bir fonksiyon yok ise bu durumda derleyici doğrudan _awaitable_ nesnesini kullanır. (bu durumda _awaitable_ nesnesi bir _awaiter_ olmak zorundadır.)
+
 Standart kütüphane bize
-_std::suspend_always_ ve _std::suspend_never_ 
-awaiter sınıflarını hazır olarak sunmaktadır. 
+_std::suspend_always_ ve _std::suspend_never_ _awaiter_ sınıflarını hazır olarak sunmaktadır. 
 Aşağıda listelenen üç üye işlevi doğrudan uygulayan veya alternatif olarak bu üye işlevlerle bir nesne üretmek için _co_await()_ operatör fonksiyonunu tanımlayan herhangi bir tür, _awaiter_ bir türdür:
 
 ##### _await_ready()_
