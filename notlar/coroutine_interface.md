@@ -1,1 +1,1 @@
-coroutine interface coroutine'in geri dönüş değeri türüdür. Coroutin'i çağıran kod coroutine ile iletişimini, (örneğin coroutin'in çalışmasını devam ettirmek gibi) coroutine interface'i kullanarak gerçekleştirir.
+_coroutine interface_ _coroutine_'in geri dönüş değeri türüdür. _Coroutine_'i çağıran kod _coroutine_ ile iletişimini, (örneğin coroutin'in çalışmasını devam ettirmek gibi) _coroutine interface_'i kullanarak gerçekleştirir.
