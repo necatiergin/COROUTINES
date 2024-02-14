@@ -1,4 +1,4 @@
-![relations](https://github.com/necatiergin/COROUTINES/blob/main/notlar/coroutine_realations.png)
+![relations](https://github.com/necatiergin/COROUTINES/blob/main/notlar/coroutine_relations.png)
 
 Yukarıdaki resmi açıklayalım: <br>
 
