@@ -70,7 +70,7 @@ _Coroutine_'in kendi handle türü :
 _std::coroutine_handle<PrmType>_
 Tüm _coroutine handle_'ları _için kullanılabilen temel bir tür: _std::coroutine_handle<void>_ (veya sadece _std::coroutine_handle<>_)<br>
 Bu durumda, _promise_ nesnesine erişilemez.
-Burada parametre için _auto sepcifier_ kullanılarak derleyicinin  tür çıkarımı yapması sağlanabilir.
+Burada parametre için _auto specifier_ kullanılarak derleyicinin  tür çıkarımı yapması sağlanabilir.
 
 _await_suspend()_ işlevinin geri dönüş türü ise şunlar olabilir:<br>
 _await_suspend()_ içindeki deyimlerin yürütülmesinden sonra sonra askıya alma işlemine devam etmek ve _coroutine_'i çağırana geri dönmek için void. <br>
