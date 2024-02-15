@@ -80,7 +80,7 @@ _coroutine_ çalışmasının sonucunda çağıran koda bir değer üretmeyecek 
 
 #### _return_value()_;
 _coroutine_ çalışmasının sonucunda çağıran koda bir değer üretecek ise bu fonksiyonun tanımlanması gerekir. _coroutine_ bir argümanlı bir _co_return_ ifadesine ulaşırsa çağrılır. Aktarılan argüman belirtilen türde olmalı veya bu türe dönüştürülmelidir.
-_coroutine_'nin geri bir noktada geri dönüş değeri üretmesi fakat bir başka sonlanma noktasında  geri dönüş değeri üretmemesi tanımsız davranıştır.
+_coroutine_'nin geri bir noktada geri dönüş değeri üretmesi fakat bir başka sonlanma noktasında geri dönüş değeri üretmemesi tanımsız davranıştır.
 
 ```cpp
 ResultType corofunc(/* */ )
