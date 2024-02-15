@@ -5,10 +5,10 @@
 - _coroutine_'i çağıran ile _coroutine_ arasındaki veri alış verişini sağlar.
 - İşlenmemiş hata nesneleriyle _(unhandled exception)_ ilgili yapılacakları belirler.
 
-#### promise_type'ın implementasyonu 
+#### _promise_type_'ın implementasyonu 
 Derleme zamanında bir hata olmaması için _promise_type_'ın aşağıdaki fonksiyonları tanımlaması gerekmektedir. (çağrıldıkları  sıra ile)  
 
-#### constructor
+#### _constructor_
 Bir _coroutine_ başlatıldığında _promise_ nesnesini oluşturmak için _coroutine frame_ tarafından _promise_ sınıfının _constructor_'ı çağrılır. _Constructor_, derleyici tarafından _coroutine_'i bazı argümanlarla başlatmak için kullanılabilir. Bunun için, _constructor_ imzasının, çağrıldığında _coroutine_'e aktarılan argümanlarla eşleşmesi gerekir. Bu teknik özellikle _coroutine_traits_ tarafından kullanılır.
 
 #### _get_return_object()_ 
