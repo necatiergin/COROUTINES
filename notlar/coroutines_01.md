@@ -35,7 +35,8 @@ co_return;
 ```
 deyimi yazmamız gerekir.
 
-_Coroutine_'ler bir _stack_ yapısında değiller _(stackless coroutine)_. Bir _coroutine_'i bir _coroutine_ içinden çalıştırıp onu çalıştıran _coroutine_'i _suspend_ etmeden, _suspend_ edemeyiz. _coroutine_ fonksiyonlar için aşağıdaki kısıtlamalar söz konusudur:
+_Coroutine_'ler bir _stack_ yapısında değiller _(stackless coroutine)_. Bir _coroutine_'i bir _coroutine_ içinden çalıştırıp onu çalıştıran _coroutine_'i _suspend_ etmeden, _suspend_ edemeyiz.<br>
+_coroutine_ fonksiyonlar için aşağıdaki kısıtlamalar söz konusudur:
 - _main_ fonksiyonu bir _coroutine_ olamaz.
 - _variadic_ bir fonksiyon bir _coroutine_ olamaz.
 - Sınıfların _constructor_'ları _coroutine_ olamaz.
