@@ -24,8 +24,9 @@ Eğer böyle bir üye fonksiyon yok ise derleyici bu kez uygun bir parametreye s
 Varsa bu fonksiyona _awaitable_ nesnesini argüman olarak gönderir. 
 Böyle bir fonksiyon yok ise bu durumda derleyici doğrudan _awaitable_ nesnesini kullanır. (bu durumda _awaitable_ nesnesi bir _awaiter_ olmak zorundadır.)
 
-Standart kütüphane bize
-_std::suspend_always_ ve _std::suspend_never_ _awaiter_ sınıflarını hazır olarak sunmaktadır. 
+Standart kütüphane bize temel düzeyde
+- _std::suspend_always_ ve _std::suspend_never_ _awaiter_ sınıflarını hazır olarak sunmaktadır. 
+- _std::suspend_never_ : _co_await_ operatörünün _coroutine_'i durdurmamasını (askıya almamasını) sağlar.
 
 #### awaiter nedir?
 Aşağıda listelenen üç üye işlevi doğrudan uygulayan veya alternatif olarak bu üye işlevlerle bir nesne üretmek için _co_await()_ operatör fonksiyonunu tanımlayan herhangi bir tür, _awaiter_ bir türdür:
