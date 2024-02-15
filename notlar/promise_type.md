@@ -21,8 +21,9 @@ Derleyicinin ürettiği kodda bu fonksiyonun çağrılmasıyla _coroutine arayü
 Oluşturulan nesne _coroutine_'i çağıran koda _coroutine_'in geri dönüş değeri ile iletilir. 
 _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
 
-#### _initial_suspend();_
-Bu fonksiyon, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını verir. Derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılır:
+#### _initial_suspend()_
+Bu fonksiyon, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını verir. 
+Derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılır:
 
 ```cpp
 co_await prm.initial_suspend();
