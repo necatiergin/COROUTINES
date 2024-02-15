@@ -38,6 +38,12 @@ deyimi yazmamız gerekir.
 _Coroutine_'ler bir _stack_ yapısında değiller _(stackless coroutine)_. Bir _coroutine_'i bir _coroutine_ içinden çalıştırıp onu çalıştıran _coroutine_'i _suspend_ etmeden, _suspend_ edemeyiz. _coroutine_ fonksiyonlar için aşağıdaki kısıtlamalar söz konusudur:
 - _main_ fonksiyonu bir _coroutine_ olamaz.
 - _variadic_ bir fonksiyon bir _coroutine_ olamaz.
+- Sınıfların _constructor_'ları _coroutine_ olamaz.
+- Bir sınıfın _destructor_'ı coroutine olamaz.
+- _coroutine_ bir _constexpr_ fonksiyon olamaz.
+- _coroutine_ bir _consteval_ fonksiyon olamaz.
+- _coroutine_'ler _auto return type_  kullanamazlar.
+- _coroutine_'ler normal _return_ deyimlerini kullanamazlar.
 
 - [Bir _coroutine_ genellikle çağıran için _coroutine_ arayüzü _(coroutine interface)_ olarak hizmet veren bir nesne döndürür.](https://github.com/necatiergin/COROUTINES/blob/main/notlar/coroutine_interface.md)
 _coroutine_'in amacına ve kullanımına bağlı olarak, bu nesne zaman zaman bağlamı askıya alan veya değiştiren çalışan bir görevi, zaman zaman değer üreten bir üreteci veya tembel olarak _(lazily)_ ve talep üzerine bir veya daha fazla değer döndüren bir fabrikayı temsil edebilir.<br>
