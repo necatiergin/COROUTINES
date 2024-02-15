@@ -43,7 +43,7 @@ Ancak bu fonksiyonu bir koşula bağlı olarak olarak _true_ değer döndürebil
 _await_ready()_ fonksiyonu ile askıya almayı kabul etmemek, programın _coroutine_'in askıya alınmasını başlatma maliyetinden tasarruf edilmesini sağlar.<br>
 Bu fonksiyonun kodu çalışırken _coroutine_'in henüz askıya alınmadığını (durdurulmadığını) unutmayın. 
 Yani bu fonksiyon içinde _resume()_ ya da destroy() işlevleri (dolaylı olarak) çağrılmamalıdır.
-Bu fonksiyon içişnde askıya alınan _coroutine_ için _resume()_ veya _destroy()_ çağrısı yapılmadığından emin olunduğu sürece daha karmaşık işleri gerçekleştirecek fonksiyonlar bile burada çağrılabilir.
+Bu fonksiyon içinde askıya alınan _coroutine_ için _resume()_ veya _destroy()_ çağrısı yapılmadığından emin olunduğu sürece daha karmaşık işleri gerçekleştirecek fonksiyonlar bile burada çağrılabilir.
 <br>
 
 #### _await_suspend (coroutine_handle)_ 
@@ -73,8 +73,9 @@ Bu durumda, _promise_ nesnesine erişilemez.
 Burada parametre için _auto specifier_ kullanılarak derleyicinin  tür çıkarımı yapması sağlanabilir.
 
 _await_suspend()_ işlevinin geri dönüş türü ise şunlar olabilir:<br>
-_await_suspend()_ içindeki deyimlerin yürütülmesinden sonra sonra askıya alma işlemine devam etmek ve _coroutine_'i çağırana geri dönmek için void. <br>
-_bool_ türü : askıya almanın gerçekten gerçekleşip gerçekleşmeyeceğini bildirmek için. Burada _false_ "askıya alma (artık)" anlamına gelir. (_await_ready()_ işlevinin _bool_ dönüş değerlerinin tersidir).<br>
+_await_suspend()_ içindeki deyimlerin yürütülmesinden sonra sonra askıya alma işlemine devam etmek ve _coroutine_'i çağırana geri dönmek için _void_. <br>
+_bool_ türü : askıya almanın gerçekten gerçekleşip gerçekleşmeyeceğini bildirmek için. 
+Burada _false_ "askıya alma (artık)" anlamına gelir. (_await_ready()_ işlevinin _bool_ dönüş değerlerinin tersidir).<br>
 _std::coroutine_handle<>_ türü<br>
 yerine başka bir _coroutine_'i devam ettirmek için. <br>
 _Bu await_suspend()_ kullanımına simetrik aktarım _(symmetric transfer)_ denir ve daha sonra ayrıntılı olarak ele alacağız.<br>
