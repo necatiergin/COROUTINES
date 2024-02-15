@@ -9,7 +9,11 @@
 Derleme zamanında bir hata olmaması için _promise_type_'ın aşağıdaki fonksiyonları tanımlaması gerekmektedir. (çağrıldıkları  sıra ile)  
 
 #### _constructor_
-Bir _coroutine_ başlatıldığında _promise_ nesnesini oluşturmak için _coroutine frame_ tarafından _promise_ sınıfının _constructor_'ı çağrılır. _Constructor_, derleyici tarafından _coroutine_'i bazı argümanlarla başlatmak için kullanılabilir. Bunun için, _constructor_ imzasının, çağrıldığında _coroutine_'e aktarılan argümanlarla eşleşmesi gerekir. Bu teknik özellikle _coroutine_traits_ tarafından kullanılır.
+Bir _coroutine_ başlatıldığında _promise_ nesnesini oluşturmak için _coroutine frame_ tarafından _promise_ sınıfının _constructor_'ı çağrılır. 
+Bu yüzden _promise_type_'ın geçerli olarak çağrılabilir bir _constructor_'a sahip olması gerekir. Basit senaryolar için sınıfın _default ctor_'ı yeterli olabilir.
+_Constructor_, derleyici tarafından _coroutine_'i bazı argümanlarla başlatmak için kullanılabilir. Bunun için, _constructor_ imzasının, çağrıldığında _coroutine_'e aktarılan argümanlarla eşleşmesi gerekir. Bu teknik özellikle _coroutine_traits_ tarafından kullanılır. 
+
+
 
 #### _get_return_object()_ 
 Bu fonksiyon derleyicinin ürettiği kod tarafından _coroutine_ arayüzünü oluşturması için çağrılır. _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda _coroutine_'in geri dönüş değeri ile iletilir. _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
