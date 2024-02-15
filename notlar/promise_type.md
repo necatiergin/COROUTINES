@@ -16,7 +16,10 @@ _Constructor_, derleyici tarafından _coroutine_'i bazı argümanlarla başlatma
 
 
 #### _get_return_object()_ 
-Bu fonksiyon derleyicinin ürettiği kod tarafından _coroutine_ arayüzünü oluşturması için çağrılır. _coroutine arayüz_ nesnesini oluşturur. Oluşturulan nesne _coroutine_'i çağıran koda _coroutine_'in geri dönüş değeri ile iletilir. _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
+Bu fonksiyon derleyicinin ürettiği kod tarafından _coroutine_ arayüzünü oluşturması için çağrılır. 
+Derleyicinin ürettiği kodda bu fonksiyonun çağrılmasıyla _coroutine arayüz_ nesnesi oluşturulur. 
+Oluşturulan nesne _coroutine_'i çağıran koda _coroutine_'in geri dönüş değeri ile iletilir. 
+_coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _static_ üye fonksiyonu olan _from_promise_ tarafından oluşturulur.
 
 #### _initial_suspend();_
 Bu fonksiyon, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını verir. Derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılır:
