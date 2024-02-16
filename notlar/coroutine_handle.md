@@ -127,3 +127,20 @@ Böylece bu fonksiyondan elde ettiğimiz pointer değişkeni başka bir bağlamd
     handle1 == handle2 // true
 ```
 _coroutine_ yok edildikten sonra bu adres kullanılmamalıdır.
+
+Tüm _coroutine_handle_ türlerinden _std::coroutine<void>_ sınıfı türüne örtülü tür dönüşümü vardır.
+
+```cpp
+namespace std {
+	template<typename Promise>
+	struct coroutine_handle {
+	//...
+	// implicit conversion to coroutine_handle<void>:
+	constexpr operator coroutine_handle<>() const noexcept;
+	//...
+	};
+}
+```
+
+İlk standarda göre tüm _coroutine_handle_ türlerinin _std::coroutine<void>_ türünden kalıtım yoluyla elde dilmesi gerekiyordu. Bu durum http://wg21.link/lwg3460 ile değiştirildi.
+
