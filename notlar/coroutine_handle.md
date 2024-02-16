@@ -112,12 +112,12 @@ std::coroutine_handle<promise_type> hdl2{nullptr};
 if (hdl) // false
 ```
 _handle_ nesnelerinin birbirine kopyalanması ya da atanması maliyeti düşüktür. 
-Kopyalanan handle nesnesinin sarmaladığı bir pointer değişkendir.
+Kopyalanan _handle_ nesnesinin sarmaladığı bir pointer değişkendir.
 Bu yüzden _coroutine_handle_ fonkiyonlara tipik olarak _call by value_ olarak gönderilir.
 Kopyalamaya izin verildiği için birden fazla _handle_ aynı _coroutine_'i gösterebilir.
-Eğer başka bir _handle_ _coroutine_'i yok etmişse _handle_'ın _resume_ ya da _destroy_ fonksiyonlarını çapğırmak tanımsız davranıştır _(dangling pointer)_.<br>
+Eğer başka bir _handle_ _coroutine_'i yok etmişse _handle_'ın _resume_ ya da _destroy_ fonksiyonlarını çağırmak tanımsız davranıştır _(dangling pointer)_.<br>
 Sınıfın _address()_ fonksiyonu sarmalanan _pointer_ değişkenin değerini _void*_ türden bir adres olarak döndürür. 
-Böylece bu fonksiyondan elde ettiğimiz pointer değişkeni başka bir bağlamda kullanarak o bağlamda sınıfın from_address isimli static üye fonksiyonuna çağrı yaparak aynı _coroutine_'i gösteren bir başka _handle_ nesnesi oluşturabiliriz:
+Böylece bu fonksiyondan elde ettiğimiz pointer değişkeni başka bir bağlamda kullanarak o bağlamda sınıfın _from_address_ isimli _static_ üye fonksiyonuna çağrı yaparak aynı _coroutine_'i gösteren bir başka _handle_ nesnesi oluşturabiliriz:
 ```cpp
     auto handle1 = std::coroutine_handle<decltype(prm)>::from_promise(prm);
     //...
