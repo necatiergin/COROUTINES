@@ -1,16 +1,20 @@
 <!--
 coroutine handle bir "callable object".
-fonksiyon çağrı operatörünün operandı olduğunda coroutinin suspen edildiği yerden tekrar çalışmay devame tmesini sağlıyor
+Standart kütüphane coroutine handle türünü generic bir tür olarak sunuyor.
 
-coroutşine handle türünü standart kütüphane sağlıyor
-coruine_handle<> 
+```cpp
+std::coroutine_handle<>
+// ya da
+std::coroutine_handle<void>
+``` 
+
 ya da 
 
-ya da 
-
-coruine_handle<promise_type>
- 
-
+```cpp
+std::coroutine_handle<promise_type>
+``` 
 
 
--->
+_coroutine_handle_ nesnesi fonksiyon çağrı operatörünün operandı olduğunda _coroutine_'in durdurulduğu noktadan çalışmaya tekrar devam etmesini sağlıyor.
+
+
