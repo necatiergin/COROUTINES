@@ -33,3 +33,48 @@ _coroutine'in_ geri dönüş türü olan _coroutine interface_ bu türlere eriş
 Standart kütüphanenin sağladığı _coroutine_handle<>_ türü çalışmakta ya da durdurulmuş olan bir _coroutine_'e erişmek için kullanılıyor. Template parametresi olan türü _coroutine_'in  _promise_type_ türü. Bu türde çeşitli değerler tutan veri elemanları ya da çeşiltli operasyonlar sağlayan üye fonksiyonlar bulunabilir.
 
 _coroutine_handle<>_ türünün üye fonksiyonlarına bakalım: 
+
+- _coroutine_handle<promise_type>::from_promise(prm)_ <br>
+_promise_ nesnesinden bir _handle_ oluşturur.
+
+- _CoroHandleType{} <br>_
+_default constructor_. Henüz bir _coroutine_ ile ilişkilendirilmemiş bir _handle_ oluşturur.
+
+- CoroHandleType{nullptr} 
+Henüz bir _coroutine_ ile ilişkilendirilmemiş bir _handle_ oluşturur.
+
+- _CoroHandleType{hdl}_ <br> 
+Bir _handle_'dan yeni bir _handle_ nesnesini oluşturur. Bu durumda her iki _handle_ da aynı coroutine'e işaret etmektedir.
+
+- _hdl = hdl2_ <br>
+Assigns the handle hdl2 (both refer to the same coroutine)
+
+- _if (hdl)_ <br> 
+Yields whether the handle refers to a coroutine
+
+- _==, !=_ <br>
+Checks whether two handles refer to the same coroutine
+
+- _<, <=, >, >=, <=>_ <br>
+ Creates an order between coroutine handles
+
+- _hdl.resume()_ <br>
+Resumes the coroutine
+
+- _hdl()_ <br>
+Resumes the coroutine
+
+- _hdl.done()_ <br>
+Yields whether a suspended coroutine is at its end and resume() is not allowed anymore
+
+- _hdl.destroy()_ <br>
+Destroys the coroutine
+
+- _hdl.promise()_ <br>
+Yields the promise of the coroutine
+
+- _hdl.address()_ <br>
+Yields the internal address to the coroutine data
+
+- _coroutine_handle<PrmT>::from_address(addr)_ <br>
+Yields the handle for the address addr
