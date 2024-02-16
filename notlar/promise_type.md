@@ -23,7 +23,7 @@ _coroutine_ arayüz nesnesi tipik olarak _std::coroutine_handle_ sınıfının _
 
 #### _initial_suspend()_
 Bu fonksiyon, _coroutine_ başlatıldıktan hemen sonra ilk kez _suspend_ edilsin mi sorusunun cevabını verir. 
-Derleyicinin ürettiği kod tarafından aşağıdaki gibi çağrılır:
+Derleyicinin ürettiği kod tarafından, _prm_ promise nesnesi olmak üzre, aşağıdaki gibi çağrılır:
 
 ```cpp
 co_await prm.initial_suspend();
