@@ -78,3 +78,27 @@ _coroutine_ verilerinin tutulduğu içsel adresi döndürür.
 
 - _coroutine_handle<PrmT>::from_address(addr)_ <br>
 argüman olan adresle ilişkili bir _handle_ nesnesi oluşturur.
+
+Sınıfın _static_ üye fonksiyonu olan _from_promise()_ bir _coroutine_'den bir _handle_ oluşturması için çağrılır. 
+Bu fonksiyon aslında _promise_ nesnesinin adresini _handle_ nesnesi içinde saklar.
+_prm_ bir _promise_ nesnesi olmak üzere aşağıdaki gibi çağrılabilir:
+
+```cpp
+auto hdl = std::coroutine_handle<decltype(prm)>::from_promise(prm);
+```
+
+_from_promise()_ tipik olarak _promise_type_ sınıfının _get_return_object_ fonksiyonu içinde çağrılır:
+
+```cpp
+class CoroFace{
+public:
+    struct promise_type {
+        auto get_return_object() 
+        { 
+            return CoroFace{std::coroutine_handle<promise_type>::from_promise(*this)};
+        }
+        //...
+    };
+    //...
+};
+```
