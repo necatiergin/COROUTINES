@@ -56,25 +56,25 @@ Yields whether the handle refers to a coroutine
 Checks whether two handles refer to the same coroutine
 
 - _<, <=, >, >=, <=>_ <br>
- Creates an order between coroutine handles
+_handle_'ların sıralanması için gerekli karşılaştırma işlemlerini sağlar.
 
 - _hdl.resume()_ <br>
-Resumes the coroutine
+coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ sağlar.
 
 - _hdl()_ <br>
-Resumes the coroutine
+_coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ sağlar.
 
 - _hdl.done()_ <br>
 Yields whether a suspended coroutine is at its end and resume() is not allowed anymore
 
 - _hdl.destroy()_ <br>
-Destroys the coroutine
+_coroutine_ nesnesini sonlandırır.
 
 - _hdl.promise()_ <br>
-Yields the promise of the coroutine
+_coroutine_'in promise nesnesine eriştirir.
 
 - _hdl.address()_ <br>
-Yields the internal address to the coroutine data
+_coroutine_ verilerinin tutulduğu içsel adresi döndürür.
 
 - _coroutine_handle<PrmT>::from_address(addr)_ <br>
 Yields the handle for the address addr
