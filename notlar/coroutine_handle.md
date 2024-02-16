@@ -30,7 +30,7 @@ _coroutine'in_ geri dönüş türü olan _coroutine interface_ bu türlere eriş
 - Nasıl bir _promise_ türü kullanılacak? promise türü tipik olarak bir içsel tür _(nested type)_ yapılıyor.
 - _coroutine_handle_ nesnesi nerede saklanacak? Tipik olarak _coroutine_handle_ sınıfın bir veri elemanı yapılıyor.
 - _coroutine_interface_ türü _coroutine_'in kullanılabilmesi için müşteri kodlara kontrol olanağı veren bir arayüz sağlıyor.
-Standart kütüphanenin sağladığı _coroutine_handle<>_ türü çalışmakta ya da durdurulmuş olan bir _coroutine_'e erişmek için kullanılıyor. Template parametresi olan türü _coroutine_'in  _promise_type_ türü. Bu türde çeşitli değerler tutan veri elemanları ya da çeşiltli operasyonlar sağlayan üye fonksiyonlar bulunabilir.
+Standart kütüphanenin sağladığı _coroutine_handle<>_ türü çalışmakta ya da durdurulmuş olan bir _coroutine_'e erişmek için kullanılıyor. Template parametresi olan türü _coroutine_'in  _promise_type_ türü. Bu türde çeşitli değerler tutan veri elemanları ya da çeşitli operasyonlar sağlayan üye fonksiyonlar bulunabilir.
 
 _coroutine_handle<>_ türünün üye fonksiyonlarına bakalım: 
 
