@@ -27,7 +27,7 @@ std::coroutine_handle<promise_type>
 _coroutine_handle_ nesnesi fonksiyon çağrı operatörünün operandı olduğunda _coroutine_'in durdurulduğu noktadan çalışmaya tekrar devam etmesini sağlıyor.<br>
 
 _coroutine'in_ geri dönüş türü olan _coroutine interface_ bu türlere erişim olanağı sunuyor:
-- Nasıl bir _promise_ türü kullanılacak? promise türü tipik olarak bir içsel tür _(nested type)_ yapılıyor.
+- Nasıl bir _promise_ türü kullanılacak? _promise_ türü tipik olarak bir içsel tür _(nested type)_ yapılıyor.
 - _coroutine_handle_ nesnesi nerede saklanacak? Tipik olarak _coroutine_handle_ sınıfın bir veri elemanı yapılıyor.
 - _coroutine_interface_ türü _coroutine_'in kullanılabilmesi için müşteri kodlara kontrol olanağı veren bir arayüz sağlıyor.
 Standart kütüphanenin sağladığı _coroutine_handle<>_ türü çalışmakta ya da durdurulmuş olan bir _coroutine_'e erişmek için kullanılıyor. Template parametresi olan türü _coroutine_'in  _promise_type_ türü. Bu türde çeşitli değerler tutan veri elemanları ya da çeşitli operasyonlar sağlayan üye fonksiyonlar bulunabilir.
@@ -101,4 +101,13 @@ public:
     };
     //...
 };
+```
+
+_default ctor_. ya da _std::nullptr_t_ parametreli _ctor_. ile oluşturulan bir _handle_ nesnesi boştur, hiçbir _coroutine_'i göstermez. Bu durumdaki bir _handle_ nesnesi için çağrılan _operator bool_ fonksiyonu _false_ değer döndürür.
+
+```cpp
+std::coroutine_handle<promise_type> hdl1{};
+std::coroutine_handle<promise_type> hdl2{nullptr};
+
+if (hdl) // false
 ```
