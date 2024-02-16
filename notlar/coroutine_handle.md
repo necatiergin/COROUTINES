@@ -28,4 +28,12 @@ std::coroutine_handle<promise_type>
 
 _coroutine_handle_ nesnesi fonksiyon çağrı operatörünün operandı olduğunda _coroutine_'in durdurulduğu noktadan çalışmaya tekrar devam etmesini sağlıyor.
 
+crt'in geri dönüş türü olan coroutine interface bu türlere erişim olanağı sunuyor:
+- Nasıl bir promise türü kullanılacak? promise türü tipik olarak bir nested type yapılıuypr
+- ct handle nerde saklanacak. Tipik olarak crt handle sınıdın bir veri elemanı yapılıyor
+- cortine interface corutine in client code tarafından kullanılması için müşteri kodlara bir arayüz sağlıypor
+• It has to define where the coroutine handle is stored (it is usually defined as a data member).
+• It has to provide the interface for the caller to deal with the coroutine (the member function resume() in
+this case).
+
 
