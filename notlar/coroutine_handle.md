@@ -47,13 +47,13 @@ Henüz bir _coroutine_ ile ilişkilendirilmemiş bir _handle_ oluşturur.
 Bir _handle_'dan yeni bir _handle_ nesnesini oluşturur. Bu durumda her iki _handle_ da aynı coroutine'e işaret etmektedir.
 
 - _hdl = hdl2_ <br>
-Assigns the handle hdl2 (both refer to the same coroutine)
+Bir _handle_'a yeni bir _handle_ nesnesini atar. Bu durumda her iki _handle_ da aynı _coroutine_'e işaret etmektedir.
 
 - _if (hdl)_ <br> 
-Yields whether the handle refers to a coroutine
+_handle_'ın bir _coroutine_'i gösterip göstermediğini sınar.
 
 - _==, !=_ <br>
-Checks whether two handles refer to the same coroutine
+iki _handle_'ın aynı _coroutine_'i gösterip göstermediğini sınar.
 
 - _<, <=, >, >=, <=>_ <br>
 _handle_'ların sıralanması için gerekli karşılaştırma işlemlerini sağlar.
@@ -65,16 +65,16 @@ coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ s
 _coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ sağlar.
 
 - _hdl.done()_ <br>
-Yields whether a suspended coroutine is at its end and resume() is not allowed anymore
+_coroutine_'in çalışmasının tamamlanmış olup olmadığını sınar. BU fonksiyon _true_ değer döndürür ise artık ilgili _crt_ için _resume_ fonksiyonu çağrılmamalıdır.
 
 - _hdl.destroy()_ <br>
 _coroutine_ nesnesini sonlandırır.
 
 - _hdl.promise()_ <br>
-_coroutine_'in promise nesnesine eriştirir.
+_coroutine_'in _promise_ nesnesine eriştirir.
 
 - _hdl.address()_ <br>
 _coroutine_ verilerinin tutulduğu içsel adresi döndürür.
 
 - _coroutine_handle<PrmT>::from_address(addr)_ <br>
-Yields the handle for the address addr
+argüman olan adresle ilişkili bir _handle_ nesnesi oluşturur.
