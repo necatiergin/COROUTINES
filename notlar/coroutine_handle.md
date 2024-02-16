@@ -32,4 +32,4 @@ _coroutine'in_ geri dönüş türü olan _coroutine interface_ bu türlere eriş
 - _coroutine_interface_ türü _coroutine_'in kullanılabilmesi için müşteri kodlara kontrol olanağı veren bir arayüz sağlıyor.
 Standart kütüphanenin sağladığı _coroutine_handle<>_ türü çalışmakta ya da durdurulmuş olan bir _coroutine_'e erişmek için kullanılıyor. Template parametresi olan türü _coroutine_'in  _promise_type_ türü. Bu türde çeşitli değerler tutan veri elemanları ya da çeşiltli operasyonlar sağlayan üye fonksiyonlar bulunabilir.
 
-coroutine_handle<> türünün üye fonksiyonlarına bakalım: 
+_coroutine_handle<>_ türünün üye fonksiyonlarına bakalım: 
