@@ -6,6 +6,7 @@ Bu türü kullanarak _coroutine_'in belirli noktalarda nasıl davranacağını b
 Bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler olarak kullanılıyorlar.
 
 - _std::coroutine_handle<>_ türü <br>
+
 _coroutine_ başlatıldığında _promise_ sınıfının üye fonksiyonlarından biri kullanılarak _std::coroutine_handle_ türünden bir nesne oluşturuluyor. <br>
 Bu tür _coroutine_'in kontrolü için alt seviyeli bir arayüz sağlıyor. 
 - _coroutine_'in çalışmasının devam ettirilmesi _(resume)_
@@ -29,5 +30,6 @@ _coroutine'in_ geri dönüş türü olan _coroutine interface_ bu türlere eriş
 - Nasıl bir _promise_ türü kullanılacak? promise türü tipik olarak bir içsel tür _(nested type)_ yapılıyor.
 - _coroutine_handle_ nesnesi nerede saklanacak? Tipik olarak _coroutine_handle_ sınıfın bir veri elemanı yapılıyor.
 - _coroutine_interface_ türü _coroutine_'in kullanılabilmesi için müşteri kodlara kontrol olanağı veren bir arayüz sağlıyor.
+Standart kütüphanenin sağladığı _coroutine_handle<>_ türü çalışmakta ya da durdurulmuş olan bir _coroutine_'e erişmek için kullanılıyor. Template parametresi olan türü _coroutine_'in  _promise_type_ türü. Bu türde çeşitli değerler tutan veri elemanları ya da çeşiltli operasyonlar sağlayan üye fonksiyonlar bulunabilir.
 
-
+coroutine_handle<> türünün üye fonksiyonlarına bakalım: 
