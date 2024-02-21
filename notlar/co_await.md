@@ -36,9 +36,9 @@ _await_ready_ fonksiyonu sonucun hazır olup olmadığını _(true)_ veya geçer
 Bu fonksiyonun _coroutine_ askıya alınmadan (durdurulmadan) hemen önce çağrılır.<br>
 Askıya almayı (geçici olarak) tamamen kapatmak için kullanılabilir. <br>
 _await_ready_ fonksiyonu _true_ döndürürse, askıya alma isteği reddedilmiş demektir. 
-Yani fonksiyonun _true_ değer döndürmesi _coroutine_'i askıya almadan devam etmeye "hazırız" anlamına gelir.<br>
-Genellikle, bu fonksiyon yalnızca _false_ değer döndürür ("hayır, herhangi bir askıya alma işleminden kaçınmayın/engellemeyin anlamında").<br> 
-Ancak bu fonksiyonu bir koşula bağlı olarak olarak _true_ değer döndürebilir (örneğin, askıya alma bazı verilerin mevcut olmasına bağlıysa).<br>
+Yani fonksiyonun _true_ değer döndürmesi _coroutine_'i durdurmadan devam etmeye "hazırız" anlamına gelir.<br>
+Genellikle, bu fonksiyon yalnızca _false_ değer döndürür ("hayır, herhangi bir durdurma işleminden kaçınmayın/engellemeyin anlamında").<br> 
+Ancak bu fonksiyon bir koşula bağlı olarak olarak _true_ değer döndürebilir (örneğin, _coroutine_'in durdurulması bazı verilerin mevcut olmasına bağlıysa).<br>
 
 [Geri dönüş türüyle _await_suspend()_ fonksiyonu da , coroutine'in askıya alınmasını kabul etmeme sinyali de verebilir (_true_ ve _false_ geri dönüş değerlerinin burada zıt anlama sahip olduğuna dikkat edin: _await_suspend()_ fonksiyonunun _true_ değer döndürmesi ile askıya alma kabul edilmiş olur.] <br>
 _await_ready()_ fonksiyonu ile askıya almayı kabul etmemek, programın _coroutine_'in askıya alınmasını başlatma maliyetinden tasarruf edilmesini sağlar.<br>
