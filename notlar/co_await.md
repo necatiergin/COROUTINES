@@ -84,7 +84,7 @@ _Bu await_suspend()_ kullanımına simetrik aktarım _(symmetric transfer)_ deni
 Bu durumda, bir _noop coroutine_ herhangi bir _coroutine_'i devam ettirmeme sinyali vermek için kullanılabilir (fonksiyonun _false_ döndürmesi ile aynı şekilde).<br>
 Ek olarak, aşağıdakilere dikkat edilmelidir:<br>
 
-- Üye fonksiyonlar, _awaiter_'ın değiştirilen bir üyeye sahip olduğu durumlar haricinde genellikle _const_'tır (örneğin, _coroutine handle_'ını await_suspend fonksiyonu içinde saklayarak yeniden başlatma sırasında kullanılabilir hale getirmek gibi). <br>
+- Üye fonksiyonlar, _awaiter_'ın değiştirilebilen bir veri elemanına sahip olduğu durumlar haricinde genellikle _const_'tır (örneğin, _coroutine handle_'ını _await_suspend_ fonksiyonu içinde saklayarak yeniden başlatma sırasında kullanılabilir hale getirmek gibi). <br>
 - Üye fonksiyonlar genellikle _noexcept_'tir (_final_suspend_() fonksiyonu _noexcept_ olduğu için zaten bu fonksiyon içinde kullanıma izin vermek için bu gereklidir). <br>
 - Üye fonksiyonlar _constexpr_ olabilir. <br>
 
