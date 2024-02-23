@@ -106,7 +106,7 @@ return_value(int);
 ```
 gibi bir fonksiyonun tanımlanması durumunda derleyici yukarıdaki kod için bir bir uyarı mesajı da vermeyebilir.
 
-Farkklı imzaya sahip birden fazla _return_value_ fonksiyonu tanımlanabilir yani _return_value_ fonksiyonu _overload_ edilebilir. Hatta _return_value_ fonksiyonu _generic_ olarak da tanımlanabilir.
+Farklı imzaya sahip birden fazla _return_value_ fonksiyonu tanımlanabilir yani _return_value_ fonksiyonu _overload_ edilebilir. Hatta _return_value_ fonksiyonu _generic_ olarak da tanımlanabilir.
 
 ```cpp
 struct promise_type {
@@ -137,11 +137,10 @@ ReturnType corofunc()
 	co_return val;
 }
 ```
-<!--
-yield_value(Type)
-yield_value(Type) is called if the coroutine reaches a co_yield statement.
-For basic details, see the coroutine example with co_yield.
+#### _yield_value(Type)_
+_Coroutine_ içinde programın akışı bir _co_yield_ deyimine geldiğinde _yield_value_ fonksiyonu çağrılır. Bu fonksiyonun geri dönüş değeri _co_await_ operatörünün operandı yapılır:
 
+```cpp
 struct promise_type {
 	//...
 	auto yield_value(int val) 
@@ -154,8 +153,9 @@ struct promise_type {
 		return std::suspend_always{}; // - suspend coroutine
 	}
 };
+```
 
-
+<!--
 Promises can also be used to define some optional operations that define special behavior of coroutines, where normally some default behavior is used.
 await_transform()
 await_transform() can be defined to map values from co_await to awaiters.
