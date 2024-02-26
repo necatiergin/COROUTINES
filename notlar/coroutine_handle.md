@@ -24,7 +24,7 @@ ya da
 ```cpp
 std::coroutine_handle<promise_type>
 ``` 
-_std::coroutine_handle<void>_ türünden bir nesneye herhangi bir türden _coroutine_handle_ nesnesi atanabilir.
+_std::coroutine_handle<void>_ türünden bir nesneye herhangi bir türden _coroutine_handle_ nesnesi atanabilir. (_void pointer_ türüne diğer _pointer_ türlerinden atama yapılabilmesi gibi.)
 _coroutine_handle_ nesnesi fonksiyon çağrı operatörünün operandı olduğunda _coroutine_'in durdurulduğu noktadan çalışmaya tekrar devam etmesini sağlar.<br>
 
 _coroutine'in_ geri dönüş türü olan _coroutine interface_ bu türlere erişim olanağı sunar:
@@ -32,7 +32,7 @@ _coroutine'in_ geri dönüş türü olan _coroutine interface_ bu türlere eriş
 - _coroutine_handle_ nesnesi nerede saklanacak? Tipik olarak _coroutine_handle_ sınıfın bir veri elemanı yapılır.
 - _coroutine_interface_ türü _coroutine_'in kullanılabilmesi için müşteri kodlara kontrol olanağı veren bir arayüz sağlar.
 Standart kütüphanenin sağladığı _coroutine_handle<>_ türü çalışmakta ya da durdurulmuş olan bir _coroutine_'e erişmek için kullanılır. 
-Template parametresi olan türü _coroutine_'in  _promise_type_ türü. Bu türde çeşitli değerler tutan veri elemanları ya da çeşitli operasyonlar sağlayan üye fonksiyonlar bulunabilir.
+Template parametresi olan tür _coroutine_'in  _promise_type_ türüdür. Bu türde çeşitli değerler tutan veri elemanları ya da çeşitli operasyonlar sağlayan üye fonksiyonlar bulunabilir.
 
 _coroutine_handle<>_ türünün üye fonksiyonlarına bakalım: 
 
