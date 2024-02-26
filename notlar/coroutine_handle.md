@@ -10,7 +10,7 @@ Bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler ola
 _coroutine_ başlatıldığında _promise_ sınıfının üye fonksiyonlarından biri kullanılarak _std::coroutine_handle_ türünden bir nesne oluşturulur. <br>
 Bu tür _coroutine_'in kontrolü için alt seviyeli bir arayüz sağlar. 
 - _coroutine_'in çalışmasının devam ettirilmesi _(resume)_
-- _coroutine_'in çalışmasının sonlandırılması.
+- _coroutine state_'in _(coroutine frame)_ destroy edilmesi
 
 _coroutine handle_ bir _"callable object"._ Standart kütüphane _coroutine_handle_ türünü _generic_ bir tür olarak sunar:
 
