@@ -1,11 +1,11 @@
 _coroutine_'in gerçekleştirilmesinde önemli rol oynayan iki tür var:
 
-- promise türü<br>
+- **promise türü**<br>
 Bu tür, _coroutine_'in kullanılmasında _customization_ noktaları sunar. 
 Bu türü kullanarak _coroutine_'in belirli noktalarda nasıl davranacağını belirlenebilir.
 Bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler olarak kullanılır.
 
-- _std::coroutine_handle<>_ türü <br>
+- _**std::coroutine_handle<>**_ türü <br>
 
 _coroutine_ başlatıldığında _promise_ sınıfının üye fonksiyonlarından biri kullanılarak _std::coroutine_handle_ türünden bir nesne oluşturulur. <br>
 Bu tür _coroutine_'in kontrolü için alt seviyeli bir arayüz sağlar. 
