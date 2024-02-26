@@ -67,7 +67,7 @@ _coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ 
 _coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ sağlar.
 
 - _hdl.done()_ <br>
-_coroutine_'in çalışmasının tamamlanmış olup olmadığını sınar. BU fonksiyon _true_ değer döndürür ise artık ilgili _crt_ için _resume_ fonksiyonu çağrılmamalıdır.
+_coroutine_'in çalışmasının tamamlanmış olup olmadığını sınar. Bu fonksiyon _true_ değer döndürür ise artık ilgili _crt_ için _resume_ fonksiyonu çağrılmamalıdır.
 
 - _hdl.destroy()_ <br>
 _coroutine_ nesnesini sonlandırır.
