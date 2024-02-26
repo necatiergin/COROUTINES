@@ -61,7 +61,7 @@ iki _handle_'ın aynı _coroutine_'i gösterip göstermediğini sınar.
 _handle_'ların sıralanması için gerekli karşılaştırma işlemlerini sağlar.
 
 - _hdl.resume()_ <br>
-coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ sağlar.
+_coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ sağlar.
 
 - _hdl()_ <br>
 _coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ sağlar.
