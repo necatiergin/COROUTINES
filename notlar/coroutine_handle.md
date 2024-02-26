@@ -42,11 +42,11 @@ _promise_ nesnesinden bir _handle_ oluşturur.
 - _CoroHandleType{} <br>_
 _default constructor_. Henüz bir _coroutine_ ile ilişkilendirilmemiş bir _handle_ oluşturur.
 
-- CoroHandleType{nullptr} 
+- _CoroHandleType{nullptr}_<br>
 Henüz bir _coroutine_ ile ilişkilendirilmemiş bir _handle_ oluşturur.
 
 - _CoroHandleType{hdl}_ <br> 
-Bir _handle_'dan yeni bir _handle_ nesnesini oluşturur. Bu durumda her iki _handle_ da aynı coroutine'e işaret etmektedir.
+Bir _handle_'dan yeni bir _handle_ nesnesini oluşturur. Bu durumda her iki _handle_ da aynı _coroutine_'e işaret etmektedir.
 
 - _hdl = hdl2_ <br>
 Bir _handle_'a yeni bir _handle_ nesnesini atar. Bu durumda her iki _handle_ da aynı _coroutine_'e işaret etmektedir.
