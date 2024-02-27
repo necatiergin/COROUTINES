@@ -3,16 +3,34 @@ _coroutine_'in gerçekleştirilmesinde önemli rol oynayan iki tür var:
 - **promise türü**<br>
 Bu tür, _coroutine_'in kullanılmasında _customization_ noktaları sunar. 
 Bu türü kullanarak _coroutine_'in belirli noktalarda nasıl davranacağını belirlenebilir.
-Bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler olarak kullanılır.
+Bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler olarak kullanılır. 
+Bu türden bir nesnenin içinde _coroutine_'in çağıran kod ile veri alış verişini sağlamak için değişkenler tutulabilir.
 
 - _**std::coroutine_handle<>**_ türü <br>
 
 _coroutine_ başlatıldığında _promise_ sınıfının üye fonksiyonlarından biri kullanılarak _std::coroutine_handle_ türünden bir nesne oluşturulur. <br>
-Bu tür _coroutine_'in kontrolü için alt seviyeli bir arayüz sağlar. 
-- _coroutine_'in çalışmasının devam ettirilmesi _(resume)_
-- _coroutine state_'in _(coroutine frame)_ destroy edilmesi
+Bu tür _coroutine_'in kontrolü için alt seviyeli bir arayüz sağlar. _coroutine_handle_ nesnesi kullanılarak _coroutine_frame_'de tutulan _promise_type_ nesnesine erişilebilir. _coroutine_handle_ nesnesi kullanılarak şunlar yapılabilir:
+ 
+- _coroutine_'in çalışması devam ettirilebilir: _(resume)_
+- _coroutine state_ _(coroutine frame)_ _destroy_ edilebilir..
+- _coroutine_state_' te tutulan _promise_type_ nesnesine erişilebilir.
 
-_coroutine handle_ bir _"callable object"._ Standart kütüphane _coroutine_handle_ türünü _generic_ bir tür olarak sunar:
+_coroutine handle_ bir _"callable object"_ olarak kullanılabilir.  
+_coroutine handle_ bir _"nullable_" türdür. _nullptr_ değerinde olabilir. 
+henüz bir _coroutine frame_'i göstermeyen _coroutine_handle_ değişkeni _nullptr_ değerindedir. 
+Sınıfın _operator bool_ işleviyle ya da _nullptr_ sabitiyle karşılaştırma ile bu durum sınanabilir: 
+
+```
+if (crt_handle) { 
+	//...
+}
+
+if (crt_handle != nullptr) {
+	//...
+}
+```
+
+Standart kütüphane _coroutine_handle_ türünü _generic_ bir tür olarak sunar:
 
 ```cpp
 std::coroutine_handle<>
