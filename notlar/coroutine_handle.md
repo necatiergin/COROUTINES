@@ -1,4 +1,4 @@
-_coroutine_'in gerçekleştirilmesinde önemli rol oynayan iki tür var:
+m ortak_coroutine_'in gerçekleştirilmesinde önemli rol oynayan iki tür var:
 
 - **promise türü**<br>
 Bu tür, _coroutine_'in kullanılmasında _customization_ noktaları sunar. 
