@@ -2,6 +2,23 @@ _promise_ nesnesi _coroutine_'in durumunu yöneten, _coroutine_'in davranışın
 _coroutine_'in yürütülmesi sırasında belirli noktalarda ilgili _promise_ nesnesinin belirli üye fonksiyonları çağrılır. _promise_ arayüzünde _coroutine_'in davranışını özelleştiren üye fonksiyonlar bulunur. _coroutine_ kütüphanesinin yazarı, _coroutine_ çağrıldığında ne olacağını, _coroutine_'in çalışması sonlandığunda (doğal yolla ya da işlenmeyen bir _exception_ durumunda) ne olacağını belirler. Ayrıca _coroutine_ içinde bulunan _co_await_ ve _co_yield_ ifadelerinin davranışlarını özelleştirir.
 _coroutine_ fonksiyon her çağrıldığında _coroutine frame_ içinde bir _promise_ nesnesi oluşturulur.
 
+Bazı detayları şimdilik göz ardıe dersek, bir coroutine çağrıldığında aşağıdaki kodların çalıştığını düşünebiliriz:
+
+1. _operator new_ fonksiyonu kullanarak _coroutine frame_ için bellek alanı elde edilir. (Burada bir derleyici optimizasyonu söz konusu olabilir.)   
+2. Fonksiyon parametreleri _coroutine frame_'e kopyalanır.
+3. _promise_type_ türünden _promise_ nesnesinin oluşturulması için _promise_type_ sınıfının ilgili _constructor_'ı çağrılır.
+4. _promise_ nesnesinin _get_return_object_ fonksiyonu çağrılarak _coroutine_ fonsiyonun geri dönüş değeri elde edilir.
+Sonuç bir yerel değişkende saklanır ve _coroutine_ ilk _suspend_ edildiğinde bu değer çağıran koda iletilir.
+5. _promise_ nesnesinin _initial_suspend()_ üye fonksiyonu çağrılır. Bu fonksiyonun geri dönüş değeri _co_await_ operatörünün operandı yapılarak _co_await_ deyimi yürütülür.
+6. _co_await promise.initial_suspend()_ ifadesi yürütüldükten sonra sonucu _coroutine_ _resume_ edildiğinde _coroutine_ gövdesine yazılan tüm kodlar çalıştırılır.
+
+Programın akışı _co_return deyimine geldiğinde ise şunlar olur:
+
+1. _promise_ nesnesinin _return_void()_ ya da _return_value(<expr>)_ fonksiyonu çağrılır.
+2. Tüm yerel değişkenlerin hayatı hayata geldikleri sırayla ters sırada sonlandırılır.
+3. _promise_ nesnesinin _final_suspend()_ fonkisyonu çağrılır ve geri dönüş değeri _co_await_ operatörünün operandı yapılır.
+ 
+
 #### _promise_type_ türü
 - Bu tür, bir _coroutine_ ile işlem yapmak için belirli _"customization"_ noktalarını tanımlamak için kullanılır. 
 - Belirli durumlarda çağrılan _call_back_ fonksiyonları tanımlar.
