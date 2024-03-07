@@ -12,7 +12,7 @@ Sonuç bir yerel değişkende saklanır ve _coroutine_ ilk _suspend_ edildiğind
 5. _promise_ nesnesinin _initial_suspend()_ üye fonksiyonu çağrılır. Bu fonksiyonun geri dönüş değeri _co_await_ operatörünün operandı yapılarak _co_await_ deyimi yürütülür.
 6. _co_await promise.initial_suspend()_ ifadesi yürütüldükten sonra sonucu _coroutine_ _resume_ edildiğinde _coroutine_ gövdesine yazılan tüm kodlar çalıştırılır.
 
-Programın akışı _co_return deyimine geldiğinde ise şunlar olur:
+Programın akışı _co_return_ deyimine geldiğinde ise şunlar olur:
 
 1. _promise_ nesnesinin _return_void()_ ya da _return_value(<expr>)_ fonksiyonu çağrılır.
 2. Tüm yerel değişkenlerin hayatı hayata geldikleri sırayla ters sırada sonlandırılır.
