@@ -129,7 +129,7 @@ Bu durumda _coroutine_ birden fazla ve farklı türden ifadelere sahip _co_retur
 ReturnType corofunc()
 {
 	int val{0};
-	if ( ... ) 
+	if ( /*...*/ ) 
 	{
 		co_return "error";
 	}
