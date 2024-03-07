@@ -12,3 +12,4 @@ biçiminde kullanılıyor. Yukarıdaki ifade aşağıdaki derleyici tarafından 
 co_await prom.yield_value(expr);
 ```
 
+Böylece _promise_ nesnesinin _co_yield_ operatörünün operandı olan ifadeyi kullanmasını sağlamış oluyoruz.
