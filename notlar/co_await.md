@@ -1,9 +1,9 @@
 #### _co_await_ ifadesi ne yapar ve _awaitable_ bir tür ne anlama gelir?
 _co_await_ anahtar sözcüğü _unary_ bir operatör olarak görev yapar. 
 Yani tek bir operand alır. 
-_co_await_'in operandı olan nesnenin bazı gereklilikleri yerine getirmesi gerekir.<br>
+_co_await_ operatörünün operandı olan nesnenin bazı gereklilikleri yerine getirmesi gerekir.<br>
 _coroutine_ fonksiyonumuzda _co_await_ operatörünü kullandığımızda, bizim için hazır olabilecek veya olmayabilecek bir şeyi beklediğimizi ifade etmiş oluruz.
-Eğer beklediğimiz şey hazır değilse, _co_await_ o anda çalışmakta olan _coroutine_'i askıya alır, yani onun çalışmasını durdurur ve kontrolü _coroutine_'i çağıran koda geri verir. 
+Eğer beklediğimiz şey her ne ise hazır değilse, _co_await_ o anda çalışmakta olan _coroutine_'i askıya alır, yani onun çalışmasını durdurur ve kontrolü _coroutine_'i çağıran koda geri verir. 
 Asenkron görev tamamlandığında, çağıran fonksiyon, kontrolü başlangıçta görevin bitmesini bekleyen _coroutine_'e geri aktarmalıdır.<br> 
 Aşağıdaki gibi bir ifade olsun:
 
@@ -11,6 +11,7 @@ Aşağıdaki gibi bir ifade olsun:
 co_await X{};
 ```
 Bu kodun derlenebilmesi için _X_'in _awaitable_ bir tür olması gerekir. <br> 
+
 #### awaitable nedir?
 Derleyici _co_await_ operatörünün operandı olan ifadeden yola çıkarak bir _awaiter_ nesnesi oluşturmak zorundadır. 
 Oluşturamaz ise sentaks hatası olur.
