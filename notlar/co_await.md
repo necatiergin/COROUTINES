@@ -30,20 +30,20 @@ Standart kütüphane bize temel düzeyde
 - _std::suspend_never_ : _co_await_ operatörünün _coroutine_'i durdurmamasını (askıya almamasını) sağlar.
 
 #### awaiter nedir?
-Aşağıda listelenen üç üye işlevi doğrudan uygulayan veya alternatif olarak bu üye işlevlerle bir nesne üretmek için _co_await()_ operatör fonksiyonunu tanımlayan herhangi bir tür, _awaiter_ bir türdür:
+Aşağıda listelenen üç üye işlevi doğrudan gerçekleştiren veya alternatif olarak bu üye işlevlerle bir nesne üretmek için _co_await()_ operatör fonksiyonunu tanımlayan herhangi bir tür, _awaiter_ bir türdür:
 
 ##### _await_ready()_
 _await_ready_ fonksiyonu sonucun hazır olup olmadığını _(true)_ veya geçerli _coroutine_'i askıya alıp sonucun hazır olmasını beklemek gerekip gerekmediğini ifade eden _bool_ türden bir değer döndürür. 
 Bu fonksiyonun _coroutine_ askıya alınmadan (durdurulmadan) hemen önce çağrılır.<br>
 Askıya almayı (geçici olarak) tamamen kapatmak için kullanılabilir. <br>
-_await_ready_ fonksiyonu _true_ döndürürse, askıya alma isteği reddedilmiş demektir. 
+_await_ready_ fonksiyonu _true_ döndürürse askıya alma isteği reddedilmiş demektir. 
 Yani fonksiyonun _true_ değer döndürmesi _coroutine_'i durdurmadan devam etmeye "hazırız" anlamına gelir.<br>
 Genellikle, bu fonksiyon yalnızca _false_ değer döndürür ("hayır, herhangi bir durdurma işleminden kaçınmayın/engellemeyin anlamında").<br> 
 Ancak bu fonksiyon bir koşula bağlı olarak olarak _true_ değer döndürebilir (örneğin, _coroutine_'in durdurulması bazı verilerin mevcut olmasına bağlıysa).<br>
 
 [Geri dönüş türüyle _await_suspend()_ fonksiyonu da , coroutine'in askıya alınmasını kabul etmeme sinyali de verebilir (_true_ ve _false_ geri dönüş değerlerinin burada zıt anlama sahip olduğuna dikkat edin: _await_suspend()_ fonksiyonunun _true_ değer döndürmesi ile askıya alma kabul edilmiş olur.] <br>
 _await_ready()_ fonksiyonu ile askıya almayı kabul etmemek, programın _coroutine_'in askıya alınmasını başlatma maliyetinden tasarruf edilmesini sağlar.<br>
-Bu fonksiyonun kodu çalışırken _coroutine_'in henüz durdurulmadığını unutmayın. 
+Bu fonksiyonun kodu çalışırken _coroutine_'in henüz durdurulmamıştır. 
 Yani bu fonksiyon içinde _resume()_ ya da _destroy()_ işlevleri (dolaylı olarak) çağrılmamalıdır.
 Bu fonksiyon içinde askıya alınan _coroutine_ için _resume()_ veya _destroy()_ çağrısı yapılmadığından emin olunduğu sürece daha karmaşık işleri gerçekleştirecek fonksiyonlar bile burada çağrılabilir.
 <br>
@@ -51,14 +51,23 @@ Bu fonksiyon içinde askıya alınan _coroutine_ için _resume()_ veya _destroy(
 #### _await_suspend (coroutine_handle)_ 
 _await_ready()_ fonksiyonu _false_ döndürürse, bu fonksiyon _co_await_'i çalıştıran _coroutine_'in _handle_'ı ile çağrılır. <br>
 Bu fonksiyon bize bir asenkron kodun çalışmasını başlatma ve ilgili görev bittiğinde tetiklenecek bir bildirim için abone olma ve ardından _coroutine_'i devam ettirme fırsatı verir.<br>
-ayrıntılı açıklama <br>
-Bu fonksiyon, _coroutine_ askıya alındıktan hemen sonra çağrılır. 
-Fonksiyon parametresi olan _awaitHdl_ durdurma işleminin talep edildiği _coroutine_'e erişimi sağlayan _handle_'dır.<br>
+
+awaisuspend fonksiyonu, _coroutine_ askıya alındıktan hemen sonra çağrılır. 
+Fonksiyon parametresi olan _coroutine_handle_ durdurma işleminin talep edildiği _coroutine_'e erişimi sağlayan _handle_'dır.<br>
 Bekleyen _coroutine_'in _handle_'ının türündendir: _std::coroutine_handle<PromiseType>_. <br>
-Burada, durdurulan _coroutine_'i veya bekleyen bir _coroutine_'i hemen devam ettirmek ve diğerini daha sonra devam ettirmek için zamanlamak da dahil olmak üzere bir sonraki adımda ne yapılacağı belirlenebilir. 
-Bunu desteklemek için özel geri dönüş türleri kullanılabilir (bu durum aşağıda ele alınacaktır).<br>
+Burada, durdurulan _coroutine_'in veya bekleyen bir _coroutine_'in çalışmasını hemden devam ettirmek ve diğerini daha sonra devam ettirmek için zamanlamak da dahil olmak üzere bir sonraki adımda ne yapılacağı belirlenebilir. 
+Bunu desteklemek için farklı geri dönüş türleri kullanılabilir (bu durum aşağıda ele alınacaktır).<br>
 Hatta burada _coroutine_ _destroy_ edilebilir.  
 Ancak bu durumda _coroutine_'in başka bir yerde kullanılmadığından emin olmanız gerekir (örneğin bir _coroutine_ arayüzünde _done()_ çağrısı yapmak gibi). <br>
+_await_suspend()_ işlevinin geri dönüş türü ise şunlar olabilir:<br>
+
+**geri dönüş türünün _void_  olması**
+_await_suspend()_ fonksiyonun geri dönüş türü _void_ olursa fonksiyon içindeki deyimlerin yürütülmesinden sonra sonra _coroutine_'in çalışması durdurulur ve programın akışı _coroutine_'i çalıştıran koda aktarılır.<br>
+
+**geri dönüş türünün _bool_  olması**
+_await_suspend()_ fonksiyonun geri dönüş türünün _bool_ olması ile _coroutin_'in durdurulması bir koşula bağlanabilir. Fonksiyonun _false_ döndürmesi _coroutine_'in durdurulmayacağı anlamına gelir. (_await_ready()_ işlevinin _bool_ dönüş değerlerinin tersidir).<br>
+
+**geri dönüş türünün _coroutine_handle_ olması**
 
 #### _await_resume()_
 Sonucu (veya hatayı) _coroutine_'e iletmekten sorumlu fonksiyondur. <br>
@@ -74,10 +83,7 @@ Tüm _coroutine handle_'ları _için kullanılabilen temel bir tür: _std::corou
 Bu durumda, _promise_ nesnesine erişilemez.
 Burada parametre için _auto specifier_ kullanılarak derleyicinin  tür çıkarımı yapması sağlanabilir.
 
-_await_suspend()_ işlevinin geri dönüş türü ise şunlar olabilir:<br>
-_await_suspend()_ içindeki deyimlerin yürütülmesinden sonra sonra askıya alma işlemine devam etmek ve _coroutine_'i çağırana geri dönmek için _void_. <br>
-_bool_ türü : askıya almanın gerçekten gerçekleşip gerçekleşmeyeceğini bildirmek için. 
-Burada _false_ "askıya alma (artık)" anlamına gelir. (_await_ready()_ işlevinin _bool_ dönüş değerlerinin tersidir).<br>
+
 
 _std::coroutine_handle<>_ türü<br>
 yerine başka bir _coroutine_'i devam ettirmek için. <br>
