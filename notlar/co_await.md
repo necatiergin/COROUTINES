@@ -70,12 +70,14 @@ _await_suspend()_ fonksiyonun geri dönüş türünün _bool_ olması ile _corou
 **geri dönüş türünün _coroutine_handle_ olması**
 _await_suspend()_ fonksiyonu başka bir _coroutine_'in _handle_'ını döndürebilir. Bu durumda _coroutine_'in çalışması durdurulur ancak programın akışı doğrudan _coroutin_'i çalıştıran koda aktarılmaz. _handle_'ı döndürülen _coroutine_ çalıştırılır. Bu _coroutine_ de programın akışını bir başka _coroutin_'e yönlendirebilir. Kontrolün _coroutine_'i çalıştıran koda geri dönmesi için _coroutine_'in akışın yönlendirileceği başka bir _coroutine_ belirlememesi gerekir.<br>
 Peki, programın akşı bir koşula bağlı olarak bir başka _coroutine_'e aktarılabilir mi? 
-Bu durumda fonksiyonun geri dönüş değeri türü _coroutine_handle_ olmalı ama bu _handle_ programın akışını başka bir _coroutine_'e değil _coroutine_'i durdurarak programın akışını onu çalıştıran koda geri döndürmelidir. Bu amaçla fonksiyonun return ifadesi 
+Bu durumda fonksiyonun geri dönüş değeri türü _coroutine_handle_ olmalı ama bu _handle_ programın akışını başka bir _coroutine_'e değil _coroutine_'i durdurarak programın akışını onu çalıştıran koda geri döndürmelidir. Bu amaçla fonksiyonun _return_ ifadesi 
 
 ```cpp
 std::noop_coroutine_handle()
 ```
 yapılır. 
+
+Bir koşula bağlı olarak çalıştırılan _coroutine_'i durdurmamak _(suspend etmemek)_ için fonksiyonun geri dönüş değeri fonksiyonun parametre değişkenine aktarılan _handle_ değeri yapılabilir.
 
 #### _await_resume()_
 Sonucu (veya hatayı) _coroutine_'e iletmekten sorumlu fonksiyondur. <br>
