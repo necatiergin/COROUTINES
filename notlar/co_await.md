@@ -68,6 +68,7 @@ _await_suspend()_ fonksiyonun geri dönüş türü _void_ olursa fonksiyon için
 _await_suspend()_ fonksiyonun geri dönüş türünün _bool_ olması ile _coroutin_'in durdurulması bir koşula bağlanabilir. Fonksiyonun _false_ döndürmesi _coroutine_'in durdurulmayacağı anlamına gelir. (_await_ready()_ işlevinin _bool_ dönüş değerlerinin tersidir).<br>
 
 **geri dönüş türünün _coroutine_handle_ olması**
+_await_suspend()_ fonksiyonu başka bir _coroutine_'in _handle_'ını döndürebilir. Bu durumda _coroutine_'in çalışması durdurulur ancak programın akışı doğrudan _coroutin_'i çalıştıran koda aktarılmaz. _handle_'ı döndürülen _coroutine_ çalıştırılır. Bu _coroutine_ de programın akışını bir başka _coroutin_'e yönlendirebilir. Kontrolün _coroutine_'i çalıştıran koda geri dönmesi için _coroutine_'in akışın yönlendirileceği başka bir _coroutine_ belirlememesi gerekir.<br>
 
 #### _await_resume()_
 Sonucu (veya hatayı) _coroutine_'e iletmekten sorumlu fonksiyondur. <br>
