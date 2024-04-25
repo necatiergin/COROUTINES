@@ -2,7 +2,7 @@ _promise_ nesnesi _coroutine_'in durumunu yöneten, _coroutine_'in davranışın
 _coroutine_'in yürütülmesi sırasında belirli noktalarda ilgili _promise_ nesnesinin belirli üye fonksiyonları çağrılır. _promise_ arayüzünde _coroutine_'in davranışını özelleştiren üye fonksiyonlar bulunur. _coroutine_ kütüphanesinin yazarı, _coroutine_ çağrıldığında ne olacağını, _coroutine_'in çalışması sonlandığunda (doğal yolla ya da işlenmeyen bir _exception_ durumunda) ne olacağını belirler. Ayrıca _coroutine_ içinde bulunan _co_await_ ve _co_yield_ ifadelerinin davranışlarını özelleştirir.
 _coroutine_ fonksiyon her çağrıldığında _coroutine frame_ içinde bir _promise_ nesnesi oluşturulur.
 
-Bazı detayları şimdilik göz ardıe dersek, bir coroutine çağrıldığında aşağıdaki kodların çalıştığını düşünebiliriz:
+Bazı detayları şimdilik göz ardı edersek, bir _coroutine_ çağrıldığında aşağıdaki kodların çalıştığını düşünebiliriz:
 
 1. _operator new_ fonksiyonu kullanarak _coroutine frame_ için bellek alanı elde edilir. (Burada bir derleyici optimizasyonu söz konusu olabilir.)   
 2. Fonksiyon parametreleri _coroutine frame_'e kopyalanır.
