@@ -19,11 +19,11 @@ Programın akışı _co_return_ deyimine geldiğinde ise şunlar olur:
 3. _promise_ nesnesinin _final_suspend()_ fonksiyonu çağrılır ve geri dönüş değeri _co_await_ operatörünün operandı yapılır. 
 
 #### _promise_type_ türü
-- Bu tür, bir _coroutine_ ile işlem yapmak için belirli _"customization"_ noktalarını tanımlamak için kullanılır. 
+- Bu tür, bir _coroutine_ ile işlem yapmak için belirli _"customization"_ noktalarını tanımlamak ve oluşturmak için kullanılır. 
 - Belirli durumlarda çağrılan _call_back_ fonksiyonları tanımlar.
 - _coroutine_'in dönüş değerinin nasıl oluşturulacağını veya alınacağını tanımlar (genellikle _coroutine handle_'ın oluşturulmasını da sağlar.)
 - _coroutine_'in çalışmasının başında ya da sonunda _suspend_ edilip edilmeyeceğini (durdurulup durdurulmayacağını) belirler.
-- _coroutine_'i çağıran ile _coroutine_ arasındaki veri alış verişini sağlar.
+- _coroutine_'i çağıran kod ile _coroutine_ arasındaki veri alış verişini sağlar.
 - İşlenmemiş hata nesneleriyle _(unhandled exception)_ ilgili yapılacakları belirler.
 
 #### _promise_type_'ın implementasyonu 
