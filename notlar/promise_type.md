@@ -4,7 +4,7 @@ _coroutine_ fonksiyon her çağrıldığında _coroutine frame_ içinde bir _pro
 
 Bazı detayları şimdilik göz ardı edersek, bir _coroutine_ çağrıldığında aşağıdaki kodların çalıştığını düşünebiliriz:
 
-1. _operator new_ fonksiyonu kullanarak _coroutine frame_ için bellek alanı elde edilir. (Burada bir derleyici optimizasyonu söz konusu olabilir.)   
+1. _operator new_ fonksiyonun çağrılmasıyla _coroutine frame_ için bir bellek alanı elde edilir. (Burada, derleyici koşullar uygunsa dinamik bir bellek alanının kullanılmaması biçiminde bir optimizasyon gerçekleştirebilir.)   
 2. Fonksiyon parametreleri _coroutine frame_'e kopyalanır.
 3. _promise_type_ türünden _promise_ nesnesinin oluşturulması için _promise_type_ sınıfının ilgili _constructor_'ı çağrılır.
 4. _promise_ nesnesinin _get_return_object_ fonksiyonu çağrılarak _coroutine_ fonsiyonun geri dönüş değeri elde edilir.
