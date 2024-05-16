@@ -4,7 +4,7 @@ Normal fonksiyonlar çağrıldığında kodlarının tamamı çalıştırılır.
 - fonksiyonun kodundan bir _exception_ gönderilmesi yoluyla çıkılması gerekir.
 
 Oysa _coroutine_'ler kodları birden fazla adımda çalışabilen fonksiyonlardır.
-Belirli anlarda, bir _coroutine_'inin çalışmasını askıya alabiliriz, yani çalışmasını daha sonra tekrar başlatmak üzere durdurabiliriz. (İngilizcede bu anlamda _suspend_ fiili kullanılıyor, isim hali _suspension_) Sonra çalışmasını tekrar devam ettirebiliriz.
+Belirli anlarda, bir _coroutine_'in çalışmasını askıya alabiliriz, yani çalışmasını daha sonra tekrar başlatmak üzere durdurabiliriz. (İngilizcede bu anlamda _suspend_ fiili kullanılıyor, isim hali _suspension_) Sonra çalışmasını tekrar devam ettirebiliriz.
 Bir _coroutine_ fonksiyonunun çalışmasını örneğin, 
 - bir olayı beklemesi gerektiği için,
 - yapılacak başka (daha önemli) işler olduğu için,
