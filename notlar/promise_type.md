@@ -16,8 +16,7 @@ Programın akışı _co_return_ deyimine geldiğinde ise şunlar olur:
 
 1. _promise_ nesnesinin _return_void()_ ya da _return_value(<expr>)_ fonksiyonu çağrılır.
 2. Tüm yerel değişkenlerin hayatı hayata geldikleri sırayla ters sırada sonlandırılır.
-3. _promise_ nesnesinin _final_suspend()_ fonkisyonu çağrılır ve geri dönüş değeri _co_await_ operatörünün operandı yapılır.
- 
+3. _promise_ nesnesinin _final_suspend()_ fonksiyonu çağrılır ve geri dönüş değeri _co_await_ operatörünün operandı yapılır. 
 
 #### _promise_type_ türü
 - Bu tür, bir _coroutine_ ile işlem yapmak için belirli _"customization"_ noktalarını tanımlamak için kullanılır. 
@@ -34,8 +33,6 @@ Derleme zamanında bir hata olmaması için _promise_type_'ın aşağıdaki fonk
 Bir _coroutine_ başlatıldığında _promise_ nesnesini oluşturmak için _coroutine frame_ tarafından _promise_ sınıfının _constructor_'ı çağrılır. 
 Bu yüzden _promise_type_'ın geçerli olarak çağrılabilir bir _constructor_'a sahip olması gerekir. Basit senaryolar için sınıfın _default ctor_'ı yeterli olabilir.
 _Constructor_, derleyici tarafından _coroutine_'i bazı argümanlarla başlatmak için kullanılabilir. Bunun için, _constructor_ imzasının, çağrıldığında _coroutine_'e aktarılan argümanlarla eşleşmesi gerekir. Bu teknik özellikle _coroutine_traits_ tarafından kullanılır. 
-
-
 
 #### _get_return_object()_ 
 Bu fonksiyon derleyicinin ürettiği kod tarafından _coroutine_ arayüzünü oluşturması için çağrılır. 
