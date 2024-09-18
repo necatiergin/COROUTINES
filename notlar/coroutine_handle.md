@@ -1,10 +1,8 @@
 _coroutine_'in gerçekleştirilmesinde önemli rol oynayan iki tür var:
 
 - **promise türü**<br>
-Bu tür, _coroutine_'in kullanılmasında _customization_ noktaları sunar. 
-Bu türü kullanarak _coroutine_'in belirli noktalarda nasıl davranacağını belirlenebilir.
-Bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler olarak kullanılır. 
-Bu türden bir nesnenin içinde _coroutine_'in çağıran kod ile veri alış verişini sağlamak için değişkenler tutulabilir.
+Bu tür, _coroutine_'in kullanılmasında _customization_ noktaları sunar. Bu tür kullılanarak _coroutine_'in belirli noktalarda nasıl davranacağını belirlenebilir.
+Bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler olarak kullanılır. Bu türden bir nesnenin içinde _coroutine_'in çağıran kod ile veri alış verişini sağlamak için değişkenler tutulabilir.
 
 - _**std::coroutine_handle<>**_ türü <br>
 
