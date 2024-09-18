@@ -39,7 +39,7 @@ ya da
 ```cpp
 std::coroutine_handle<promise_type>
 ``` 
-_std::coroutine_handle<void>_ türünden bir nesneye herhangi bir türden _coroutine_handle_ nesnesi atanabilir. (_void pointer_ türüne diğer _pointer_ türlerinden atama yapılabilmesi gibi.)
+_std::coroutine_handle\<void *>_ türünden bir nesneye herhangi bir türden _coroutine_handle_ nesnesi atanabilir. (_void pointer_ türüne diğer _pointer_ türlerinden atama yapılabilmesi gibi.)
 _coroutine_handle_ nesnesi fonksiyon çağrı operatörünün operandı olduğunda _coroutine_'in durdurulduğu noktadan çalışmaya tekrar devam etmesini sağlar.<br>
 
 _coroutine'in_ geri dönüş türü olan _coroutine interface_ bu türlere erişim olanağı sunar:
