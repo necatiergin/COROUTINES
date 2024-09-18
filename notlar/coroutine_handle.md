@@ -9,7 +9,7 @@ _coroutine_ başlatıldığında _promise_ sınıfının üye fonksiyonlarından
 Bu tür _coroutine_'in kontrolü için alt seviyeli bir arayüz sağlar. _coroutine_handle_ nesnesi kullanılarak _coroutine_frame_'de tutulan _promise_type_ nesnesine erişilebilir. _coroutine_handle_ nesnesi kullanılarak şunlar yapılabilir:
  
 - _coroutine_'in çalışması devam ettirilebilir: _(resume)_
-- _coroutine state_ _(coroutine frame)_ _destroy_ edilebilir..
+- _coroutine state_ _(coroutine frame)_ _destroy_ edilebilir.
 - _coroutine_state_' te tutulan _promise_type_ nesnesine erişilebilir.
 
 _coroutine handle_ bir _"callable object"_ olarak kullanılabilir.  
