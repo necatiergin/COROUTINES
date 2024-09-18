@@ -5,7 +5,6 @@ Bu tür, _coroutine_'in kullanılmasında _customization_ noktaları sunar. Bu t
 Bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler olarak kullanılır. Bu türden bir nesnenin içinde _coroutine_'in çağıran kod ile veri alış verişini sağlamak için değişkenler tutulabilir.
 
 _**std::coroutine_handle<>**_ türü <br>
-
 _coroutine_ başlatıldığında _promise_ sınıfının üye fonksiyonlarından biri kullanılarak _std::coroutine_handle_ türünden bir nesne oluşturulur. <br>
 Bu tür _coroutine_'in kontrolü için alt seviyeli bir arayüz sağlar. _coroutine_handle_ nesnesi kullanılarak _coroutine_frame_'de tutulan _promise_type_ nesnesine erişilebilir. _coroutine_handle_ nesnesi kullanılarak şunlar yapılabilir:
  
