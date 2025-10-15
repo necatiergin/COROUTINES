@@ -498,7 +498,7 @@ Bu fonksiyon içinde askıya alınan _coroutine_ için _resume()_ veya _destroy(
 _await_ready()_ fonksiyonu _false_ döndürürse, bu fonksiyon _co_await_'i çalıştıran _coroutine_'in _handle_'ı ile çağrılır. <br>
 Bu fonksiyon bize bir asenkron kodun çalışmasını başlatma ve ilgili görev bittiğinde tetiklenecek bir bildirim için abone olma ve ardından _coroutine_'i devam ettirme fırsatı verir.<br>
 
-awaisuspend fonksiyonu, _coroutine_ askıya alındıktan hemen sonra çağrılır. 
+_await_suspend_ fonksiyonu, _coroutine_ askıya alındıktan hemen sonra çağrılır. 
 Fonksiyon parametresi olan _coroutine_handle_ durdurma işleminin talep edildiği _coroutine_'e erişimi sağlayan _handle_'dır.<br>
 Bekleyen _coroutine_'in _handle_'ının türündendir: _std::coroutine_handle<PromiseType>_. <br>
 Burada, durdurulan _coroutine_'in veya bekleyen bir _coroutine_'in çalışmasını hemden devam ettirmek ve diğerini daha sonra devam ettirmek için zamanlamak da dahil olmak üzere bir sonraki adımda ne yapılacağı belirlenebilir. 
@@ -511,7 +511,7 @@ _await_suspend()_ işlevinin geri dönüş türü ise şunlar olabilir:<br>
 _await_suspend()_ fonksiyonun geri dönüş türü _void_ olursa fonksiyon içindeki deyimlerin yürütülmesinden sonra sonra _coroutine_'in çalışması durdurulur ve programın akışı _coroutine_'i çalıştıran koda aktarılır.<br>
 
 **geri dönüş türünün _bool_  olması**
-_await_suspend()_ fonksiyonun geri dönüş türünün _bool_ olması ile _coroutin_'in durdurulması bir koşula bağlanabilir. Fonksiyonun _false_ döndürmesi _coroutine_'in durdurulmayacağı anlamına gelir. (_await_ready()_ işlevinin _bool_ dönüş değerlerinin tersidir).<br>
+_await_suspend()_ fonksiyonun geri dönüş türünün _bool_ olması ile _coroutine_'in durdurulması bir koşula bağlanabilir. Fonksiyonun _false_ döndürmesi _coroutine_'in durdurulmayacağı anlamına gelir. (_await_ready()_ işlevinin _bool_ dönüş değerlerinin tersidir).<br>
 
 **geri dönüş türünün _coroutine_handle_ olması**
 _await_suspend()_ fonksiyonu başka bir _coroutine_'in _handle_'ını döndürebilir. Bu durumda _coroutine_'in çalışması durdurulur ancak programın akışı doğrudan _coroutin_'i çalıştıran koda aktarılmaz. _handle_'ı döndürülen _coroutine_ çalıştırılır. Bu _coroutine_ de programın akışını bir başka _coroutin_'e yönlendirebilir. Kontrolün _coroutine_'i çalıştıran koda geri dönmesi için _coroutine_'in akışın yönlendirileceği başka bir _coroutine_ belirlememesi gerekir.<br>
