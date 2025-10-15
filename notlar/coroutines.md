@@ -89,10 +89,10 @@ _coroutine_'in gerçekleştirilmesinde önemli rol oynayan iki tür var:
 
 **promise türü (promise_type)**<br>
 _promise_type_, _coroutine_’in davranışını (başlama, bitirme, _yield_ etme, return etme) tanımlayan türdür. Bu türden bir nesne _coroutine frame_ içinde derleyici tarafından oluşturulur. _promise_ nesnesini derleyicinin ürettiği kod oluşturur. Bir _coroutine_ çağrıldığında _coroutine frame_ edinilir edinilmez _promise_type_ nesnesi oluşturulur.
-Bu tür, _coroutine_'in kullanılmasında _customization_ noktaları sunar. Bu tür kullanılanarak _coroutine_'in belirli noktalarda nasıl davranacağını belirlenebilir. Derleyicinin ürettiği kodlar belirli noktalarda promise_type'ın 
-- get_return_object(),
-- initial_suspend(), 
-- return_value() gibi fonksiyonları ı çağırır.
+Bu tür, _coroutine_'in kullanılmasında _customization_ noktaları sunar. Bu tür kullanılanarak _coroutine_'in belirli noktalarda nasıl davranacağını belirlenebilir. Derleyicinin ürettiği kodlar belirli noktalarda _promise_type_'ın 
+- _get_return_object()_,
+- _initial_suspend(),_ 
+-_ return_value()_ gibi fonksiyonları ı çağırır.
 Yani bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler olarak kullanılır. Bu türden bir nesnenin içinde _coroutine_'in çağıran kod ile veri alış verişini sağlamak için değişkenler tutulabilir.
 
 _**std::coroutine_handle<>**_ türü <br>
