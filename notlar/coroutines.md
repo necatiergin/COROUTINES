@@ -87,9 +87,13 @@ Bir _promise_ nesnesi yoluyla _coroutine_'in durumu _(state)_ kontrol edilebilir
 Derleyici bir _coroutine_ için ürettiği kodda _coroutine interface_'in [_promise_type_](https://github.com/necatiergin/COROUTINES/blob/main/notlar/promise_type.md) isimli içsel türünü _(nested type)_ kullanır. Bu yüzden _coroutine interface_'in öyle ya da böyle _promise_type_ isimli bir _nested type_'a sahip olması gerekir. Bunu sağlamanın birden fazla yolu olabilir. Yine derleyici tarafından yazılan kodlar belirli durumlarda _promise_type_'ın bazı üye fonksiyonlarını çağırmaktadır. Bu yüzden _promise_type_'ın belirli üye fonksiyonlarının da tanımlanması gerekmektedir.
 _coroutine_'in gerçekleştirilmesinde önemli rol oynayan iki tür var:
 
-**promise türü**<br>
-Bu tür, _coroutine_'in kullanılmasında _customization_ noktaları sunar. Bu tür kullılanarak _coroutine_'in belirli noktalarda nasıl davranacağını belirlenebilir.
-Bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler olarak kullanılır. Bu türden bir nesnenin içinde _coroutine_'in çağıran kod ile veri alış verişini sağlamak için değişkenler tutulabilir.
+**promise türü (promise_type)**<br>
+_promise_type_, _coroutine_’in davranışını (başlama, bitirme, _yield_ etme, return etme) tanımlayan türdür. Bu türden bir nesne _coroutine frame_ içinde derleyici tarafından oluşturulur. _promise_ nesnesini derleyicinin ürettiği kod oluşturur. Bir _coroutine_ çağrıldığında _coroutine frame_ edinilir edinilmez _promise_type_ nesnesi oluşturulur.
+Bu tür, _coroutine_'in kullanılmasında _customization_ noktaları sunar. Bu tür kullanılanarak _coroutine_'in belirli noktalarda nasıl davranacağını belirlenebilir. Derleyicinin ürettiği kodlar belirli noktalarda promise_type'ın 
+- get_return_object(),
+- initial_suspend(), 
+- return_value() gibi fonksiyonları ı çağırır.
+Yani bu türün üye fonksiyonları belirli durumlarda çağrılan _callback_'ler olarak kullanılır. Bu türden bir nesnenin içinde _coroutine_'in çağıran kod ile veri alış verişini sağlamak için değişkenler tutulabilir.
 
 _**std::coroutine_handle<>**_ türü <br>
 _coroutine_ başlatıldığında _promise_ sınıfının üye fonksiyonlarından biri kullanılarak _std::coroutine_handle_ türünden bir nesne oluşturulur. <br>
