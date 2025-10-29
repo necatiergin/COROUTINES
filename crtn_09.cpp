@@ -34,7 +34,7 @@ public:
 		{
 			return std::suspend_always{};
 		}
-		
+
 		void unhandled_exception()noexcept
 		{
 			std::terminate();
@@ -76,15 +76,17 @@ private:
 
 Generator func()
 {
-	static std::mt19937 eng;
+	static std::mt19937 eng{ std::random_device{}() };
+	static std::uniform_int_distribution dist(0, 999);
+
+
 	std::size_t cnt{};
 	for (int i = 0; ; ++i) {
-		auto val = eng();
+		auto val = dist(eng);
 		co_yield val;
 		++cnt;
 		if (val % 19 == 0)
 			co_return cnt;
-		
 	}
 }
 
@@ -94,9 +96,9 @@ int main()
 	auto gen = func();
 
 	while (gen.resume()) {
-		std::cout << gen.get_value() << "\n";
+		std::cout << gen.get_value() << '\n';
 	}
 
-	std::cout << "total count = " << gen.get_count()  << "\n";
+	std::cout << "total count = " << gen.get_count() << '\n';
 
 }
