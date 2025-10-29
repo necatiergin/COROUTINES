@@ -1,7 +1,6 @@
 #include <generator> //C++23
 #include <utility>
 
-
 std::generator<int> fib(int n) 
 {
     int x{ 0 }, y{ 1 };
