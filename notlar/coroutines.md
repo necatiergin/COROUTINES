@@ -135,7 +135,7 @@ _coroutine_handle_ nesnesi fonksiyon çağrı operatörünün operandı olduğun
 
 _coroutine'in_ geri dönüş türü olan _coroutine interface_ bu türlere erişim olanağı sunar:
 - Nasıl bir _promise_ türü kullanılacak? _promise_ türü tipik olarak bir içsel tür _(nested type)_ yapılır.
-- _coroutine_handle_ nesnesi nerede saklanacak? Tipik olarak _coroutine_handle_ sınıfın bir veri elemanı yapılır.
+- _coroutine_handle_ nesnesi nerede saklanacak? Tipik olarak _coroutine_handle_ _coroutine interface_ sınıfının bir veri elemanı yapılır.
 - _coroutine_interface_ türü _coroutine_'in kullanılabilmesi için müşteri kodlara kontrol olanağı veren bir arayüz sağlar.
 Standart kütüphanenin sağladığı _coroutine_handle<>_ türü çalışmakta ya da durdurulmuş olan bir _coroutine_'e erişmek için kullanılır. 
 Template parametresi olan tür _coroutine_'in  _promise_type_ türüdür. Bu türde çeşitli değerler tutan veri elemanları ya da çeşitli operasyonlar sağlayan üye fonksiyonlar bulunabilir.
@@ -169,11 +169,13 @@ _handle_'ların sıralanması için gerekli karşılaştırma işlemlerini sağl
 - _hdl.resume()_ <br>
 _coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ sağlar.
 
-- _hdl()_ <br>
+- _hdl() (function call operator function)_ <br>
 _coroutine_'in durdurulduğu noktadan tekrar çalıştırılmasını _(resume)_ sağlar.
 
+<!--- DEBUG --->
 - _hdl.done()_ <br>
-_coroutine_'in çalışmasının tamamlanmış olup olmadığını sınar. Bu fonksiyon _true_ değer döndürür ise artık ilgili _crt_ için _resume_ fonksiyonu çağrılmamalıdır.
+_coroutine_'in çalışmasının tamamlanmış olup olmadığını sınar. 
+Bu fonksiyon _true_ değer döndürür ise artık ilgili _crt_ için _resume_ fonksiyonu çağrılmamalıdır.
 
 - _hdl.destroy()_ <br>
 _coroutine_ nesnesini sonlandırır.
